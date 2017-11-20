@@ -29,7 +29,8 @@ public class LoginServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.setAttribute("alert", getAlert());
+		req.getSession().removeAttribute(Constants.CONNECTED_USER_ATTRIBUTE);
+		req.setAttribute(Constants.ALERT_ATTRIBUTE, getAlert());
 		//Renvoie vers login.jsp
 		req.getRequestDispatcher("/WEB-INF/login.jsp").forward(req, resp);
 	}
@@ -42,13 +43,14 @@ public class LoginServlet extends HttpServlet {
 		//Verifier si on l'a dans la BDD
 		User user = userManagement.findByLogin(login);
 		if(user==null){
-			setAlert(Constants.BAD_PASSWORD_OR_LOGIN);
+			setAlert(Constants.BAD_PASSWORD_OR_LOGIN_ALERT);
 			resp.sendRedirect("login");
 		}
 		if(user.getPassword().equals(password)){
+			req.getSession().setAttribute(Constants.CONNECTED_USER_ATTRIBUTE, user);
 			resp.sendRedirect("home.html");
 		} else {
-			setAlert(Constants.BAD_PASSWORD_OR_LOGIN);
+			setAlert(Constants.BAD_PASSWORD_OR_LOGIN_ALERT);
 			resp.sendRedirect("login");
 		}
 	}
