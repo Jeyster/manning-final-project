@@ -24,10 +24,16 @@ public class UsersManagement {
 		}		
 	}
 	
-	public void addUser(String login, String password){
+	public User addUser(String login, String password){
 		User user = new User();
 		user.setLogin(login);
 		user.setPassword(password);
 		em.merge(user);
+		return user;
+	}
+
+	public void updateUser(User user) {
+		em.merge(user);
+		
 	}
 }

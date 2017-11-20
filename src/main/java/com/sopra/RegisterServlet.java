@@ -9,17 +9,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@SuppressWarnings("serial")
-@WebServlet("/login")
-public class LoginServlet extends HttpServlet {
-
+@WebServlet("/register")
+public class RegisterServlet extends HttpServlet{
+	
 	@EJB
 	private UsersManagement userManagement;
 	
 	private String alert="";
 	
-	
-
 	public String getAlert() {
 		return alert;
 	}
@@ -30,34 +27,31 @@ public class LoginServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		req.getSession().removeAttribute(Constants.CONNECTED_USER_ATTRIBUTE);
 		req.setAttribute(Constants.ALERT_ATTRIBUTE, getAlert());
-		
-		//Renvoie vers login.jsp
-		req.getRequestDispatcher("/WEB-INF/login.jsp").forward(req, resp);
+		//Renvoie vers register.jsp
+		req.getRequestDispatcher("/WEB-INF/register.jsp").forward(req, resp);;
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		//Recuperer le login et le password envoyes
+		//Recuperation des donnees
 		String login = req.getParameter("login");
 		String password = req.getParameter("password");
-		
-		//Verifier si on l'a dans la BDD
-		User user = userManagement.findByLogin(login);
-		if(user==null){
-			setAlert(Constants.BAD_PASSWORD_OR_LOGIN_ALERT);
-			resp.sendRedirect(Constants.LOGIN_PAGE);
-		}
-		if(user.getPassword().equals(password)){
+		String passwordConfirmation = req.getParameter("password-confirmation");
+		if (userManagement.findByLogin(login)!=null){ //test: login deja utilise?
+			setAlert(Constants.LOGIN_ALREADY_USED_ALERT);
+			resp.sendRedirect(Constants.REGISTER_PAGE);
+		} else if(login.isEmpty() || password.isEmpty()){
+			setAlert(Constants.EMPTY_FIELD_ALERT);
+			resp.sendRedirect(Constants.REGISTER_PAGE);
+		} else if (!password.equals(passwordConfirmation)){//test: password confirme?
+			setAlert(Constants.NOT_SAME_PASSWORD_ALERT);
+			resp.sendRedirect(Constants.REGISTER_PAGE);
+		} else {//enregistrement, mise en session et envoie sur la page d'accueil
+			User user = userManagement.addUser(login, password);
 			req.getSession().setAttribute(Constants.CONNECTED_USER_ATTRIBUTE, user);
 			resp.sendRedirect(Constants.HOME_PAGE);
-		} else {
-			setAlert(Constants.BAD_PASSWORD_OR_LOGIN_ALERT);
-			resp.sendRedirect(Constants.LOGIN_PAGE);
 		}
+		
 	}
-	
 }
