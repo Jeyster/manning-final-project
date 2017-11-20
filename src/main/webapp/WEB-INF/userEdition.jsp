@@ -9,20 +9,17 @@
 <title>User Edition</title>
 </head>
 <body>
-<h1>User Edition : </h1>
-
-
-<% User user = (User) request.getSession().getAttribute(Constants.CONNECTED_USER_ATTRIBUTE); %>
+<%User user = (User) request.getSession().getAttribute(Constants.CONNECTED_USER_ATTRIBUTE); %>
+<h1>Modify <%=user.getLogin() %> </h1>
 
 <div><div class="alert"><%=request.getAttribute(Constants.ALERT_ATTRIBUTE) %></div>	</div>
 
 
 <form method='post'  >
 	
-	<input  type='hidden'  name='userId' value="<%=user.getId() %>"  />
-	<label> New login : <input type="text" name = "login"></label>
-	<label> Password : <input type="password" name = "password"></label>
-	<label> Confirm password : <input type="password" name = "password-confirmation"></label>
+	<label> New login : <input type="text" name = "login"></label><br>
+	<label> Password : <input type="password" name = "password"></label><br>
+	<label> Confirm password : <input type="password" name = "password-confirmation"></label><br>
 	
 	<button>Edit</button>
 	</form>

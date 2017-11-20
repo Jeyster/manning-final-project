@@ -30,7 +30,6 @@ public class ModifyUserServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		req.getSession().removeAttribute(Constants.CONNECTED_USER_ATTRIBUTE);
 		req.setAttribute(Constants.ALERT_ATTRIBUTE, getAlert());
 
 		// Envoie vers la page d'édition des users
@@ -48,29 +47,26 @@ public class ModifyUserServlet extends HttpServlet {
 		String passwordConfirm = req.getParameter("password-confirmation");
 
 		// Guards
-		if (password == passwordConfirm && userManagement.findByLogin(login) == null) {
+		if (password.equals(passwordConfirm) && userManagement.findByLogin(login) == null) {
 
 			user.setPassword(req.getParameter("password"));
 			user.setLogin(req.getParameter("login"));
-
-		} else if (password != passwordConfirm) {
-			setAlert(Constants.NOT_SAME_PASSWORD);
+			// On update les modifications
+			userManagement.updateUser(user);
+			// On renvoi sur la page "home"
+			resp.sendRedirect("home.html");
+		} else if (!password.equals(passwordConfirm)) {
+			setAlert(Constants.NOT_SAME_PASSWORD_ALERT);
 			resp.sendRedirect("edition.html");
 
 		} else if (login == null || password == null || passwordConfirm == null) {
-			setAlert(Constants.EMPTY_ATTRIBUTE);
+			setAlert(Constants.EMPTY_FIELD_ALERT);
 			resp.sendRedirect("edition.html");
 
-		} else {
-			setAlert(Constants.LOGIN_IS_USED);
+		} else if (userManagement.findByLogin(login) != null) {
+			setAlert(Constants.LOGIN_ALREADY_USED_ALERT);
 			resp.sendRedirect("edition.html");
 		}
-
-		// On update les modifications
-		userManagement.updateUser(user);
-
-		// On renvoi sur la page "home"
-		resp.sendRedirect("home.html");
 
 	}
 

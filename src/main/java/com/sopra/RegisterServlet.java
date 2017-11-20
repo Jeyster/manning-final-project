@@ -41,6 +41,9 @@ public class RegisterServlet extends HttpServlet{
 		if (userManagement.findByLogin(login)!=null){ //test: login deja utilise?
 			setAlert(Constants.LOGIN_ALREADY_USED_ALERT);
 			resp.sendRedirect("register");
+		} else if(login.isEmpty() || password.isEmpty()){
+			setAlert(Constants.EMPTY_FIELD_ALERT);
+			resp.sendRedirect("register");
 		} else if (!password.equals(passwordConfirmation)){//test: password confirme?
 			setAlert(Constants.NOT_SAME_PASSWORD_ALERT);
 			resp.sendRedirect("register");
