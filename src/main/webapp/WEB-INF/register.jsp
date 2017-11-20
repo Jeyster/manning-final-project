@@ -5,16 +5,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Login</title>
+<title>Register</title>
 </head>
 <body>
-	<h1>Login</h1>
-	<div class="alert"><%=request.getAttribute(Constants.ALERT_ATTRIBUTE) %></div>	
+	<h1>Register</h1>
+	<div class="alert"><%=request.getAttribute(Constants.ALERT_ATTRIBUTE) %></div>
 	<form method="post">
 		<label>login : <input type="text" name="login"></label><br>
 		<label>password : <input type="password" name="password"></label><br>
-		<button>Sign in</button>
+		<label>confirm password : <input type="password" name="password-confirmation"></label><br>
+		<button>Register</button>
 	</form>
-	<div>Not registered yet ? <a href="register">Register now!</a></div>
 </body>
 </html>
