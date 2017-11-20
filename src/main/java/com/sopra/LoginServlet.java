@@ -49,14 +49,14 @@ public class LoginServlet extends HttpServlet {
 		User user = userManagement.findByLogin(login);
 		if(user==null){
 			setAlert(Constants.BAD_PASSWORD_OR_LOGIN_ALERT);
-			resp.sendRedirect("login");
+			resp.sendRedirect(Constants.LOGIN_PAGE);
 		}
 		if(user.getPassword().equals(password)){
 			req.getSession().setAttribute(Constants.CONNECTED_USER_ATTRIBUTE, user);
-			resp.sendRedirect("home.html");
+			resp.sendRedirect(Constants.HOME_PAGE);
 		} else {
 			setAlert(Constants.BAD_PASSWORD_OR_LOGIN_ALERT);
-			resp.sendRedirect("login");
+			resp.sendRedirect(Constants.LOGIN_PAGE);
 		}
 	}
 	

@@ -40,17 +40,17 @@ public class RegisterServlet extends HttpServlet{
 		String passwordConfirmation = req.getParameter("password-confirmation");
 		if (userManagement.findByLogin(login)!=null){ //test: login deja utilise?
 			setAlert(Constants.LOGIN_ALREADY_USED_ALERT);
-			resp.sendRedirect("register");
+			resp.sendRedirect(Constants.REGISTER_PAGE);
 		} else if(login.isEmpty() || password.isEmpty()){
 			setAlert(Constants.EMPTY_FIELD_ALERT);
-			resp.sendRedirect("register");
+			resp.sendRedirect(Constants.REGISTER_PAGE);
 		} else if (!password.equals(passwordConfirmation)){//test: password confirme?
 			setAlert(Constants.NOT_SAME_PASSWORD_ALERT);
-			resp.sendRedirect("register");
+			resp.sendRedirect(Constants.REGISTER_PAGE);
 		} else {//enregistrement, mise en session et envoie sur la page d'accueil
 			User user = userManagement.addUser(login, password);
 			req.getSession().setAttribute(Constants.CONNECTED_USER_ATTRIBUTE, user);
-			resp.sendRedirect("home.html");
+			resp.sendRedirect(Constants.HOME_PAGE);
 		}
 		
 	}
