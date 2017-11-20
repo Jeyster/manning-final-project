@@ -8,25 +8,31 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>User Edition</title>
 </head>
-<body>
+
 <%User user = (User) request.getSession().getAttribute(Constants.CONNECTED_USER_ATTRIBUTE); %>
 <h1>Modify <%=user.getLogin() %> </h1>
-<div>Return <a href="<%=Constants.HOME_PAGE%>">home</a></div>
 
 <div><div class="alert"><%=request.getAttribute(Constants.ALERT_ATTRIBUTE) %></div>	</div>
 
-<h2>Edit login</h2>
-<form method='post'  >
-	<label> New login : <input type="text" name = "login"></label><br>
+<h3>Edit login</h3>
+<form method='post' class="container" max-width: 960px>
+	<label class= "row"><span class="three columns"> New login: </span><input class="nine columns" type="text" name = "login"></label>
 	<button>Edit login</button>
 </form>
 
-<h2>Edit password</h2>
-<form method="post">
-	<label> Password : <input type="password" name = "password"></label><br>
-	<label> Confirm password : <input type="password" name = "password-confirmation"></label><br>
+<h3>Edit password</h3>
+<form method="post" class="container" max-width: 960px>
+	<label class= "row"><span class="three columns"> Password: </span><input class="nine columns" type="password" name = "password"></label>
+	<label class= "row"><span class="three columns"> Confirm password: </span><input class="nine columns" type="password" name = "password-confirmation"></label>
 	
 	<button>Edit password</button>
+	
+
+<div>Return <a href="<%=Constants.HOME_PAGE%>">home</a></div>
+
+	
+<link rel="stylesheet" href="Skeleton-2.0.4/css/normalize.css">
+<link rel="stylesheet" href="Skeleton-2.0.4/css/skeleton.css">
 </form>
 
 
