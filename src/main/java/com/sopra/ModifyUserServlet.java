@@ -42,32 +42,35 @@ public class ModifyUserServlet extends HttpServlet {
 
 		// Récupération des données d'édition
 		User user = (User) req.getSession().getAttribute(Constants.CONNECTED_USER_ATTRIBUTE);
-		String login = req.getParameter("login");
-		String password = req.getParameter("password");
-		String passwordConfirm = req.getParameter("password-confirmation");
-
-		// Guards
-		if (password.equals(passwordConfirm) && userManagement.findByLogin(login) == null) {
-
-			user.setPassword(req.getParameter("password"));
-			user.setLogin(req.getParameter("login"));
-			// On update les modifications
-			userManagement.updateUser(user);
-			// On renvoi sur la page "home"
-			resp.sendRedirect(Constants.HOME_PAGE);
-		} else if (!password.equals(passwordConfirm)) {
-			setAlert(Constants.NOT_SAME_PASSWORD_ALERT);
-			resp.sendRedirect(Constants.EDITION_PAGE);
-
-		} else if (login == null || password == null || passwordConfirm == null) {
-			setAlert(Constants.EMPTY_FIELD_ALERT);
-			resp.sendRedirect(Constants.EDITION_PAGE);
-
-		} else if (userManagement.findByLogin(login) != null) {
-			setAlert(Constants.LOGIN_ALREADY_USED_ALERT);
-			resp.sendRedirect(Constants.EDITION_PAGE);
+		
+		if(req.getParameterMap().containsKey("login")){
+			String login = req.getParameter("login");
+			if(login.isEmpty()){
+				setAlert(Constants.EMPTY_FIELD_ALERT);
+				resp.sendRedirect(Constants.EDITION_PAGE);
+			} else if(userManagement.findByLogin(login)!=null){
+				setAlert(Constants.LOGIN_ALREADY_USED_ALERT);
+				resp.sendRedirect(Constants.EDITION_PAGE);
+			} else {
+				user.setLogin(req.getParameter("login"));
+				userManagement.updateUser(user);
+			}
 		}
-
+		if (req.getParameterMap().containsKey("password")){
+			String password = req.getParameter("password");
+			String passwordConfirm = req.getParameter("password-confirmation");
+			if(password.isEmpty() || passwordConfirm.isEmpty()){
+				setAlert(Constants.EMPTY_FIELD_ALERT);
+				resp.sendRedirect(Constants.EDITION_PAGE);
+			} else if (!password.equals(passwordConfirm)){
+				setAlert(Constants.NOT_SAME_PASSWORD_ALERT);
+				resp.sendRedirect(Constants.EDITION_PAGE);
+			} else {
+				user.setPassword(req.getParameter("password"));
+				userManagement.updateUser(user);
+			}
+		}
+		resp.sendRedirect(Constants.HOME_PAGE);
 	}
 
 }
