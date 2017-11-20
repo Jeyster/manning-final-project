@@ -42,13 +42,13 @@ public class LoginServlet extends HttpServlet {
 		//Verifier si on l'a dans la BDD
 		User user = userManagement.findByLogin(login);
 		if(user==null){
-			setAlert("Error: bad password or login");
+			setAlert(Constants.BAD_PASSWORD_OR_LOGIN);
 			resp.sendRedirect("login");
 		}
 		if(user.getPassword().equals(password)){
 			resp.sendRedirect("home.html");
 		} else {
-			setAlert("Error: bad password or login");
+			setAlert(Constants.BAD_PASSWORD_OR_LOGIN);
 			resp.sendRedirect("login");
 		}
 	}
