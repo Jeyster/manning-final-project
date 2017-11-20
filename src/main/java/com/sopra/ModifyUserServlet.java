@@ -54,18 +54,18 @@ public class ModifyUserServlet extends HttpServlet {
 			// On update les modifications
 			userManagement.updateUser(user);
 			// On renvoi sur la page "home"
-			resp.sendRedirect("home.html");
+			resp.sendRedirect(Constants.HOME_PAGE);
 		} else if (!password.equals(passwordConfirm)) {
 			setAlert(Constants.NOT_SAME_PASSWORD_ALERT);
-			resp.sendRedirect("edition.html");
+			resp.sendRedirect(Constants.EDITION_PAGE);
 
 		} else if (login == null || password == null || passwordConfirm == null) {
 			setAlert(Constants.EMPTY_FIELD_ALERT);
-			resp.sendRedirect("edition.html");
+			resp.sendRedirect(Constants.EDITION_PAGE);
 
 		} else if (userManagement.findByLogin(login) != null) {
 			setAlert(Constants.LOGIN_ALREADY_USED_ALERT);
-			resp.sendRedirect("edition.html");
+			resp.sendRedirect(Constants.EDITION_PAGE);
 		}
 
 	}
