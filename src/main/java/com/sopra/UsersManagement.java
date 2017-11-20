@@ -30,4 +30,9 @@ public class UsersManagement {
 		user.setPassword(password);
 		em.merge(user);
 	}
+
+	public void updateUser(User user) {
+		em.merge(user);
+		
+	}
 }
