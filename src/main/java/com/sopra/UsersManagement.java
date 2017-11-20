@@ -31,4 +31,9 @@ public class UsersManagement {
 		em.merge(user);
 		return user;
 	}
+
+	public void updateUser(User user) {
+		em.merge(user);
+		
+	}
 }
