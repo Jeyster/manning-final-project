@@ -12,6 +12,13 @@ public class UsersManagement {
 	@PersistenceContext(name="Login")
 	EntityManager em;
 	
+	public Long countNumberOfUsers(){
+		System.out.println("success 2");
+		Query query = em.createQuery("select count(u) from User u");
+		return (Long) query.getSingleResult();
+		
+	}
+	
 	public User findByLogin(String login){
 		Query query = em.createQuery("from User u where u.login=:login")
 				.setParameter("login", login);
@@ -30,6 +37,13 @@ public class UsersManagement {
 		Password mypassword = new Password();
 		user.setLogin(login);
 		user.setEmail(email);
+		System.out.println("success 1");
+		if (countNumberOfUsers()==0){
+			user.setRank(Constants.ADMIN_MAX_RANK);
+		} else {
+			user.setRank((long) 1);
+		}
+		System.out.println("success 3");
 		user.setSalt(mypassword.getSalt());
 		user.setPassword(mypassword.generateStorngPasswordHash(password, user));
 		em.merge(user);

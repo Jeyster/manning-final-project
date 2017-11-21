@@ -10,9 +10,6 @@
 </head>
 
 	<h1>Login</h1>
-
-	
-	<div class="alert"><%=request.getAttribute(Constants.ALERT_ATTRIBUTE) %></div>
 	
     <div class = "alert">${alert}</div>
 	<%Alert.setAlert(""); %>
