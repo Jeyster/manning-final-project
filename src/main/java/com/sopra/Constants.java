@@ -6,7 +6,7 @@ public class Constants {
 	public static String HOME_PAGE = "home.html";
 	public static String EDITION_PAGE="edition.html";
 	public static String LOGIN_PAGE="login";
-	public static String REGISTER_PAGE="login";
+	public static String REGISTER_PAGE="register";
 
 	//ALERTS
 	public static String NOT_SAME_PASSWORD_ALERT = "Error: password not confirmed";
