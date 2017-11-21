@@ -11,9 +11,8 @@
 
 	<h1>Login</h1>
 
-	
-	
-    <div class = "alert">${alert}</div>
+
+<div class = "alert">${alert}</div>
 	<%Alert.setAlert(""); %>
 
 <form method="post" class="container" max-width: 960px>

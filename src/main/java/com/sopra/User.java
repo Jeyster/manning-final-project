@@ -22,11 +22,19 @@ public class User {
 	
 	private String email;
 	
-	
+	private Long rank;
 	
 
 	//GETTERS AND SETTERS
 	
+	public Long getRank() {
+		return rank;
+	}
+
+	public void setRank(Long rank) {
+		this.rank = rank;
+	}
+
 	public String getEmail() {
 		return email;
 	}
