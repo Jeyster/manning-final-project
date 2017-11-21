@@ -5,6 +5,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.servlet.http.HttpServletRequest;
 
 @Stateless
 public class UsersManagement {
@@ -66,6 +67,18 @@ public class UsersManagement {
 			e.printStackTrace();
 			return null;
 		}		
+	}
+	
+	public boolean validUserIsConnected(HttpServletRequest req){
+		if(req.getSession().getAttribute(Constants.CONNECTED_USER_ATTRIBUTE)!=null){
+			User user = (User) req.getSession().getAttribute(Constants.CONNECTED_USER_ATTRIBUTE);
+			if(findByLogin(user.getLogin())!=null){
+				return true;
+			} 
+		} else {
+			return false;
+		}
+		return false;
 	}
 }
 
