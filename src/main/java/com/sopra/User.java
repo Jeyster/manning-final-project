@@ -1,5 +1,7 @@
 package com.sopra;
 
+import java.security.SecureRandom;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,10 +18,20 @@ public class User {
 	@Column(unique=true)
 	private String login;
 	
-	private String password;
+	private byte[] password;
+	
+	private byte[] salt;
 	
 	
 	//GETTERS AND SETTERS
+	public byte[] getSalt() {
+		return salt;
+	}
+
+	public void setSalt(byte[] salt) {
+		this.salt = salt;
+	}
+	
 	public Integer getId() {
 		return id;
 	}
@@ -36,11 +48,11 @@ public class User {
 		this.login = login;
 	}
 
-	public String getPassword() {
+	public byte[] getPassword() {
 		return password;
 	}
 
-	public void setPassword(String password) {
+	public void setPassword(byte[] password) {
 		this.password = password;
 	}
 	
