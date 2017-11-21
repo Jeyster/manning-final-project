@@ -12,7 +12,7 @@ using wildfly10x, create a mySQL datasource with the next properties:
 
 * Create a database on phpmyadmin with this name : login
 
-#what you have to know about this login app
+##what you have to know about this login app
 
 * the connected user is registered in the session: if you want to disconnect, go to the login page (its first effect is to remove the user from the session)
 
