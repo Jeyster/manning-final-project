@@ -1,4 +1,7 @@
+
 package com.sopra;
+
+import java.security.SecureRandom;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -26,8 +29,10 @@ public class UsersManagement {
 	
 	public User addUser(String login, String password){
 		User user = new User();
+		Password mypassword = new Password();
 		user.setLogin(login);
-		user.setPassword(password);
+		user.setSalt(mypassword.getSalt());
+		user.setPassword(mypassword.generateStorngPasswordHash(password, user));
 		em.merge(user);
 		return user;
 	}
@@ -36,6 +41,5 @@ public class UsersManagement {
 		em.merge(user);
 		
 	}
-	
-	
 }
+

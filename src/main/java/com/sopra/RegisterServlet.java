@@ -59,7 +59,7 @@ public class RegisterServlet extends HttpServlet {
 			setAlert(Constants.NOT_SAME_PASSWORD_ALERT);
 			resp.sendRedirect(Constants.REGISTER_PAGE);
 			
-		} else if (login.contains(" ") || login.contains("é")) {
+		} else if (login.contains(" ") || login.contains("é") || login.contains("'") ) {
 			System.out.println("checked");
 			setAlert(Constants.LOGIN_IS_NOT_CORRECT);
 			resp.sendRedirect(Constants.REGISTER_PAGE);

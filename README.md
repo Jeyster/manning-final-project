@@ -19,3 +19,4 @@ connection url: jdbc:mysql://localhost:3306/login
 * LoginServlet: it contains all needed to connect a user. Once authentified, it redirects to the home page.
 * ModifyUserServlet: it contains all needed to modify a user. Once modified, it redirects to the home page.
 * RegisterServlet: it contains all needed to add a new user. Once added, it redirects to the home page.
+* Password: it contains all needed to make secured passwords.

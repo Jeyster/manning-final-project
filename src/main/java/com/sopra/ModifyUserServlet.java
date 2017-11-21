@@ -66,7 +66,9 @@ public class ModifyUserServlet extends HttpServlet {
 				setAlert(Constants.NOT_SAME_PASSWORD_ALERT);
 				resp.sendRedirect(Constants.EDITION_PAGE);
 			} else {
-				user.setPassword(req.getParameter("password"));
+				Password mypassword = new Password();
+				user.setSalt(mypassword.getSalt());
+				user.setPassword(mypassword.generateStorngPasswordHash(req.getParameter("password"), user));
 				userManagement.updateUser(user);
 			}
 		}

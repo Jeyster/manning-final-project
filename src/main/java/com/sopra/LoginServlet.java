@@ -1,3 +1,4 @@
+
 package com.sopra;
 
 import java.io.IOException;
@@ -49,13 +50,14 @@ public class LoginServlet extends HttpServlet {
 			setAlert(Constants.BAD_PASSWORD_OR_LOGIN_ALERT);
 			resp.sendRedirect(Constants.LOGIN_PAGE);
 		}
-		if (user.getPassword().equals(password)) {
+		Password myPassword = new Password();
+		if (myPassword.toHex(user.getPassword())
+				.equals(myPassword.toHex(myPassword.generateStorngPasswordHash(password, user)))) {
 			req.getSession().setAttribute(Constants.CONNECTED_USER_ATTRIBUTE, user);
 			resp.sendRedirect(Constants.HOME_PAGE);
 		} else {
 			setAlert(Constants.BAD_PASSWORD_OR_LOGIN_ALERT);
 			resp.sendRedirect(Constants.LOGIN_PAGE);
-
 		}
 	}
 
