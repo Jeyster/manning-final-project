@@ -42,6 +42,7 @@ public class RegisterServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// Recuperation des donnees
 		String login = req.getParameter("login");
+		String email = req.getParameter("email");
 		String password = req.getParameter("password");
 		String passwordConfirmation = req.getParameter("password-confirmation");
 		
@@ -57,7 +58,12 @@ public class RegisterServlet extends HttpServlet {
 			setAlert(Constants.EMPTY_FIELD_ALERT);
 			resp.sendRedirect(Constants.REGISTER_PAGE);
 			
-		} else if (!password.equals(passwordConfirmation)) {// test: password
+		} else if (email != null && !email.matches("([^.@]+)(\\.[^.@]+)*@([^.@]+\\.)+([^.@]+)")) {
+            setAlert(Constants.EMAIL_IS_NOT_VALID);
+            resp.sendRedirect(Constants.REGISTER_PAGE);
+        }
+		
+		else if (!password.equals(passwordConfirmation)) {// test: password
 															// confirme?
 			setAlert(Constants.NOT_SAME_PASSWORD_ALERT);
 			resp.sendRedirect(Constants.REGISTER_PAGE);
@@ -71,7 +77,7 @@ public class RegisterServlet extends HttpServlet {
 			
 			   // enregistrement, mise en session et envoie sur la page d'acceuil 
 		
-			User user = userManagement.addUser(login, password);
+			User user = userManagement.addUser(login, password, email);
 			req.getSession().setAttribute(Constants.CONNECTED_USER_ATTRIBUTE, user);
 			resp.sendRedirect(Constants.HOME_PAGE);
 		}

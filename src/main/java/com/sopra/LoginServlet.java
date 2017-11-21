@@ -41,17 +41,27 @@ public class LoginServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		//Recuperer le login et le password envoyes
+		//Recuperer le login/email et le password envoyes
 
-		String login = req.getParameter("login");
+		String connexionField = req.getParameter("connexionField");
 		String password = req.getParameter("password");
 
-		// Verifier si on l'a dans la BDD
-		User user = userManagement.findByLogin(login);
+		//Detecter le type de connexion (login / email)
+		User user = new User(); 
+		
+		if (connexionField.contains("@")){
+			 user = userManagement.findByEmail(connexionField);
+		}else{
+			 user = userManagement.findByLogin(connexionField);
+		}		
+	
 		if (user == null) {
 			setAlert(Constants.BAD_PASSWORD_OR_LOGIN_ALERT);
 			resp.sendRedirect(Constants.LOGIN_PAGE);
 		}
+		
+		
+		
 		Password myPassword = new Password();
 		if (myPassword.toHex(user.getPassword())
 				.equals(myPassword.toHex(myPassword.generateStorngPasswordHash(password, user)))) {

@@ -9,9 +9,10 @@
 	<h1>Register</h1>
 	<div class="alert"><%=request.getAttribute(Constants.ALERT_ATTRIBUTE) %></div>
 	<form method="post" class="container" max-width: 960px>
-		<label class= "row"><span class="three columns">login : </span><input class="nine columns" type="text" name="login"></label>
-		<label class= "row"><span class="three columns">password : </span><input class="nine columns" type="password" name="password"></label>
-		<label class= "row"><span class="three columns">confirm password : </span><input class="nine columns" type="password" name="password-confirmation"></label>
+		<label class= "row"><span class="three columns">login: </span><input class="nine columns" type="text" name="login"></label>
+		<label class= "row"><span class="three columns"> email: </span><input class="nine columns" type="email" name="email"></label>
+		<label class= "row"><span class="three columns">password: </span><input class="nine columns" type="password" name="password"></label>
+		<label class= "row"><span class="three columns">confirm password: </span><input class="nine columns" type="password" name="password-confirmation"></label>
 		<button>Register</button>
 	</form>
 
