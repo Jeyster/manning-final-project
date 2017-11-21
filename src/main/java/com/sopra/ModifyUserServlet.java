@@ -67,6 +67,31 @@ public class ModifyUserServlet extends HttpServlet {
 				userManagement.updateUser(user);
 			}
 		}
+		
+		
+		if (req.getParameterMap().containsKey("email")) {
+			String email = req.getParameter("email");
+			
+			if (email.isEmpty()) {
+				Alert.setAlert(Constants.EMPTY_FIELD_ALERT);
+				resp.sendRedirect(Constants.EDITION_PAGE);
+				
+			} else if (userManagement.findByEmail(email) != null) {
+				Alert.setAlert(Constants.EMAIL_ALREADY_USED_ALERT);
+				resp.sendRedirect(Constants.EDITION_PAGE);
+			}
+
+			else if (tools.checkStringsPresence(Constants.listChar, email)) {
+
+				Alert.setAlert(Constants.EMAIL_IS_NOT_VALID);
+				resp.sendRedirect(Constants.EDITION_PAGE);
+				
+			} else {
+				user.setEmail(req.getParameter("email"));
+				userManagement.updateUser(user);
+			}
+		}
+		
 		if (req.getParameterMap().containsKey("password")) {
 			String password = req.getParameter("password");
 			String passwordConfirm = req.getParameter("password-confirmation");
