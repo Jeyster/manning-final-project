@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @SuppressWarnings("serial")
 @WebServlet("/login")
@@ -41,7 +42,7 @@ public class LoginServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		//Recuperer le login et le password envoyes
+		//Recuperer le login et le password envoyés
 		String login = req.getParameter("login");
 		String password = req.getParameter("password");
 		
@@ -59,6 +60,7 @@ public class LoginServlet extends HttpServlet {
 			resp.sendRedirect(Constants.LOGIN_PAGE);
 		}
 	}
+	
 	 
 	
 }
