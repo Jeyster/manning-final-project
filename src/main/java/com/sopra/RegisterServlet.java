@@ -40,6 +40,7 @@ public class RegisterServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		String login = req.getParameter("login");
+		String email = req.getParameter("email");
 		String password = req.getParameter("password");
 		String passwordConfirmation = req.getParameter("password-confirmation");
 		
@@ -55,9 +56,15 @@ public class RegisterServlet extends HttpServlet {
 			Alert.setAlert(Constants.EMPTY_FIELD_ALERT);
 			resp.sendRedirect(Constants.REGISTER_PAGE);
 			
-		} else if (!password.equals(passwordConfirmation)) {
+
+		} else if (email != null && !email.matches("([^.@]+)(\\.[^.@]+)*@([^.@]+\\.)+([^.@]+)")) {
+            Alert.setAlert(Constants.EMAIL_IS_NOT_VALID);
+            resp.sendRedirect(Constants.REGISTER_PAGE);
+        }
+		 else if (!password.equals(passwordConfirmation)) {
 															
 			Alert.setAlert(Constants.NOT_SAME_PASSWORD_ALERT);
+
 			resp.sendRedirect(Constants.REGISTER_PAGE);
 			
 		} else if ( tools.checkStringsPresence(Constants.listChar, login)) {
@@ -69,7 +76,7 @@ public class RegisterServlet extends HttpServlet {
 			
 			    
 		
-			User user = userManagement.addUser(login, password);
+			User user = userManagement.addUser(login, password, email);
 			req.getSession().setAttribute(Constants.CONNECTED_USER_ATTRIBUTE, user);
 			resp.sendRedirect(Constants.HOME_PAGE);
 		}

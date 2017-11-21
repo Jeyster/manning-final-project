@@ -3,10 +3,6 @@
 <%@page import="com.sopra.Constants"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-
-
-
-
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -14,12 +10,17 @@
 </head>
 
 	<h1>Login</h1>
+
+	
+	<div class="alert"><%=request.getAttribute(Constants.ALERT_ATTRIBUTE) %></div>
+	
     <div class = "alert">${alert}</div>
 	<%Alert.setAlert(""); %>
 
-    <form method="post" class="container" max-width: 960px>
-    <label class= "row"><span class="three columns">login</span> <input class="nine columns"  type="text" name="login"  ></label>
-    <label class= "row"><span class="three columns">password </span><input class="nine columns" type="password" name="password" ></label>
+<form method="post" class="container" max-width: 960px>
+    <label class= "row"><span class="three columns">login/email</span> <input class="nine columns"  type="text" name="connexionField"></label>
+    <label class= "row"><span class="three columns">password </span><input class="nine columns" type="password" name="password"></label>
+    
     <button>Log In</button>
 </form>
 	<div>Not registered yet ? <a href="register">Register now!</a></div>

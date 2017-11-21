@@ -20,8 +20,21 @@ public class User {
 	
 	private byte[] salt;
 	
+	private String email;
 	
+	
+	
+
 	//GETTERS AND SETTERS
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
 	public byte[] getSalt() {
 		return salt;
 	}
