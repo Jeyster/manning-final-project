@@ -1,8 +1,8 @@
-##projet-final
+## projet-final
 
 This is a **Java** project about a login application.
 
-##what you have to do beforehand
+## What you have to do beforehand
 
 using wildfly10x, create a mySQL datasource with the next properties:
 
@@ -12,7 +12,7 @@ using wildfly10x, create a mySQL datasource with the next properties:
 
 * Create a database on phpmyadmin with this name : login
 
-##what you have to know about this login app
+## What you have to know about this login app
 
 * the connected user is registered in the session: if you want to disconnect, go to the login page (its first effect is to remove the user from the session)
 
