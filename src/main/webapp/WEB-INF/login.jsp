@@ -1,3 +1,4 @@
+<%@page import="com.sopra.Alert"%>
 <%@page import="com.sopra.LoginServlet"%>
 <%@page import="com.sopra.Constants"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -13,10 +14,8 @@
 </head>
 
 	<h1>Login</h1>
-    <div class = "alert"></div>
-<div>
-		${alert}
-	</div>
+    <div class = "alert">${alert}</div>
+	<%Alert.setAlert(""); %>
 
     <form method="post" class="container" max-width: 960px>
     <label class= "row"><span class="three columns">login</span> <input class="nine columns"  type="text" name="login"  ></label>

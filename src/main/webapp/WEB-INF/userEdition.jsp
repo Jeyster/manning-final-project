@@ -1,3 +1,4 @@
+<%@page import="com.sopra.Alert"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@page import="com.sopra.User"%>
@@ -12,7 +13,8 @@
 <%User user = (User) request.getSession().getAttribute(Constants.CONNECTED_USER_ATTRIBUTE); %>
 <h1>Modify <%=user.getLogin() %> </h1>
 
-<div><div class="alert"><%=request.getAttribute(Constants.ALERT_ATTRIBUTE) %></div>	</div>
+<div><div class="alert">${alert}</div>	</div>
+<%Alert.setAlert(""); %>
 
 <h3>Edit login</h3>
 <form method='post' class="container" max-width: 960px>
@@ -27,8 +29,7 @@
 	
 	<button>Edit password</button>
 	
-
-<div>Return <a href="<%=Constants.HOME_PAGE%>">home</a></div>
+<div>Return <a href='<%=Constants.HOME_PAGE%>'>home</a></div>
 
 	
 <link rel="stylesheet" href="Skeleton-2.0.4/css/normalize.css">

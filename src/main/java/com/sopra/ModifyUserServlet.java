@@ -16,21 +16,6 @@ public class ModifyUserServlet extends HttpServlet {
 	@EJB
 	private UsersManagement userManagement;
 
-	// Initialisation du message d'erreur, permettant d'avertir l'utilisateur si
-	// celui-ci ne remplie pas les conditions pour s'inscrire.
-	// La classe "Constants.java" contient la liste des messages d'erreur
-	// disponible.
-
-	private String alert = "";
-
-	public String getAlert() {
-		return alert;
-	}
-
-	public void setAlert(String alert) {
-		this.alert = alert;
-	}
-
 	// doGet : Envoie vers la page modify.jsp (page de modification) en
 	// récupérant et affichant le message d'erreur si l'utilisateur à mal saisi
 	// le(s) champ(s) login et/ou password + confirmation password.
@@ -38,7 +23,7 @@ public class ModifyUserServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		req.setAttribute(Constants.ALERT_ATTRIBUTE, getAlert());
+		req.setAttribute(Constants.ALERT_ATTRIBUTE, Alert.getAlert());
 
 		req.getRequestDispatcher("/WEB-INF/userEdition.jsp").forward(req, resp);
 
@@ -64,17 +49,17 @@ public class ModifyUserServlet extends HttpServlet {
 			String login = req.getParameter("login");
 			
 			if (login.isEmpty()) {
-				setAlert(Constants.EMPTY_FIELD_ALERT);
+				Alert.setAlert(Constants.EMPTY_FIELD_ALERT);
 				resp.sendRedirect(Constants.EDITION_PAGE);
 				
 			} else if (userManagement.findByLogin(login) != null) {
-				setAlert(Constants.LOGIN_ALREADY_USED_ALERT);
+				Alert.setAlert(Constants.LOGIN_ALREADY_USED_ALERT);
 				resp.sendRedirect(Constants.EDITION_PAGE);
 			}
 
 			else if (tools.checkStringsPresence(Constants.listChar, login)) {
 
-				setAlert(Constants.LOGIN_IS_NOT_CORRECT);
+				Alert.setAlert(Constants.LOGIN_IS_NOT_CORRECT);
 				resp.sendRedirect(Constants.EDITION_PAGE);
 				
 			} else {
@@ -86,10 +71,10 @@ public class ModifyUserServlet extends HttpServlet {
 			String password = req.getParameter("password");
 			String passwordConfirm = req.getParameter("password-confirmation");
 			if (password.isEmpty() || passwordConfirm.isEmpty()) {
-				setAlert(Constants.EMPTY_FIELD_ALERT);
+				Alert.setAlert(Constants.EMPTY_FIELD_ALERT);
 				resp.sendRedirect(Constants.EDITION_PAGE);
 			} else if (!password.equals(passwordConfirm)) {
-				setAlert(Constants.NOT_SAME_PASSWORD_ALERT);
+				Alert.setAlert(Constants.NOT_SAME_PASSWORD_ALERT);
 				resp.sendRedirect(Constants.EDITION_PAGE);
 			} else {
 				Password mypassword = new Password();

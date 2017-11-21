@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 @SuppressWarnings("serial")
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
-
+		
 	@EJB
 	private UsersManagement userManagement;
 	
@@ -22,18 +22,6 @@ public class LoginServlet extends HttpServlet {
 	// La classe "Constants.java" contient la liste des messages d'erreur
 	// disponible.
 
-	private String alert="";
-
-	public String getAlert() {
-		return alert;
-	}
-
-	public void setAlert(String alert) {
-		this.alert = alert;
-	}
-	
-	
-
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
@@ -41,8 +29,7 @@ public class LoginServlet extends HttpServlet {
 		if(req.getSession().getAttribute(Constants.CONNECTED_USER_ATTRIBUTE)!=null){
 			resp.sendRedirect(Constants.HOME_PAGE);
 		}
-		req.setAttribute(Constants.ALERT_ATTRIBUTE, getAlert());
-
+		req.setAttribute(Constants.ALERT_ATTRIBUTE, Alert.getAlert());
 		
 		req.getRequestDispatcher("/WEB-INF/login.jsp").forward(req, resp);
 	}
@@ -57,17 +44,16 @@ public class LoginServlet extends HttpServlet {
 		// Verifier si on l'a dans la BDD
 		User user = userManagement.findByLogin(login);
 		if (user == null) {
-			setAlert(Constants.BAD_PASSWORD_OR_LOGIN_ALERT);
+			Alert.setAlert(Constants.BAD_PASSWORD_OR_LOGIN_ALERT);
 			resp.sendRedirect(Constants.LOGIN_PAGE);
 		}
 		Password myPassword = new Password();
 		if (myPassword.toHex(user.getPassword())
 				.equals(myPassword.toHex(myPassword.generateStorngPasswordHash(password, user)))) {
 			req.getSession().setAttribute(Constants.CONNECTED_USER_ATTRIBUTE, user);
-			setAlert("");
 			resp.sendRedirect(Constants.HOME_PAGE);
 		} else {
-			setAlert(Constants.BAD_PASSWORD_OR_LOGIN_ALERT);
+			Alert.setAlert(Constants.BAD_PASSWORD_OR_LOGIN_ALERT);
 			resp.sendRedirect(Constants.LOGIN_PAGE);
 		}
 	}
