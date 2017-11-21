@@ -16,6 +16,11 @@ public class LoginServlet extends HttpServlet {
 
 	@EJB
 	private UsersManagement userManagement;
+	
+	// Initialisation du message d'erreur, permettant d'avertir l'utilisateur si
+	// celui-ci ne remplie pas les conditions pour se connecter.
+	// La classe "Constants.java" contient la liste des messages d'erreur
+	// disponible.
 
 	private String alert = "";
 
@@ -26,6 +31,8 @@ public class LoginServlet extends HttpServlet {
 	public void setAlert(String alert) {
 		this.alert = alert;
 	}
+	
+	
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -33,7 +40,7 @@ public class LoginServlet extends HttpServlet {
 		req.getSession().removeAttribute(Constants.CONNECTED_USER_ATTRIBUTE);
 		req.setAttribute(Constants.ALERT_ATTRIBUTE, getAlert());
 
-		// Renvoie vers login.jsp
+		
 		req.getRequestDispatcher("/WEB-INF/login.jsp").forward(req, resp);
 	}
 
