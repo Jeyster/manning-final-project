@@ -22,6 +22,12 @@
 	<button>Edit login</button>
 </form>
 
+<h3>Edit email</h3>
+<form method='post' class="container" max-width: 960px>
+	<label class= "row"><span class="three columns"> New email: </span><input class="nine columns" type="email" name = "email"></label>
+	<button>Edit email</button>
+</form>
+
 <h3>Edit password</h3>
 <form method="post" class="container" max-width: 960px>
 	<label class= "row"><span class="three columns"> Password: </span><input class="nine columns" type="password" name = "password"></label>
