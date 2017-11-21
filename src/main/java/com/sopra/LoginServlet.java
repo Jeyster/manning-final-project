@@ -22,7 +22,7 @@ public class LoginServlet extends HttpServlet {
 	// La classe "Constants.java" contient la liste des messages d'erreur
 	// disponible.
 
-	private String alert = "";
+	private String alert="";
 
 	public String getAlert() {
 		return alert;
@@ -36,8 +36,11 @@ public class LoginServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-		req.getSession().removeAttribute(Constants.CONNECTED_USER_ATTRIBUTE);
+		
+		//Vérification de la session: si un user (presume VALIDE) est connecte, on le redirige vers home.html
+		if(req.getSession().getAttribute(Constants.CONNECTED_USER_ATTRIBUTE)!=null){
+			resp.sendRedirect(Constants.HOME_PAGE);
+		}
 		req.setAttribute(Constants.ALERT_ATTRIBUTE, getAlert());
 
 		
@@ -46,7 +49,7 @@ public class LoginServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+		
 		// Recuperer le login et le password envoyes
 		String login = req.getParameter("login");
 		String password = req.getParameter("password");
@@ -61,6 +64,7 @@ public class LoginServlet extends HttpServlet {
 		if (myPassword.toHex(user.getPassword())
 				.equals(myPassword.toHex(myPassword.generateStorngPasswordHash(password, user)))) {
 			req.getSession().setAttribute(Constants.CONNECTED_USER_ATTRIBUTE, user);
+			setAlert("");
 			resp.sendRedirect(Constants.HOME_PAGE);
 		} else {
 			setAlert(Constants.BAD_PASSWORD_OR_LOGIN_ALERT);
