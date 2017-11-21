@@ -23,4 +23,4 @@ Create a database on phpmyadmin with this name : login
 * RegisterServlet: it contains all needed to add a new user. Once added, it redirects to the home page.
 * Password: it contains all needed to make secured passwords.
 *Tools: it contains the method to find strange caracter in a login.
-* Constants : it contains all constants used in the program (Objects, Pages, Alerts, Attributs).
+*Constants : it contains all constants used in the program (Objects, Pages, Alerts, Attributs).
