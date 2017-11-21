@@ -17,10 +17,7 @@ public class LoginServlet extends HttpServlet {
 	@EJB
 	private UsersManagement userManagement;
 	
-	// Initialisation du message d'erreur, permettant d'avertir l'utilisateur si
-	// celui-ci ne remplie pas les conditions pour se connecter.
-	// La classe "Constants.java" contient la liste des messages d'erreur
-	// disponible.
+	
 	
 	// doGet : Vérification de la session: si un user (presume VALIDE) est connecte, on le redirige vers home.html
 

@@ -10,6 +10,8 @@ name: LoginDS
 JNDI name: java:/LoginDS
 connection url: jdbc:mysql://localhost:3306/login
 
+Create a database on phpmyadmin with this name : login
+
 #what you have to know about this login app
 
 * the connected user is registered in the session: if you want to disconnect, go to the login page (its first effect is to remove the user from the session)
@@ -20,3 +22,5 @@ connection url: jdbc:mysql://localhost:3306/login
 * ModifyUserServlet: it contains all needed to modify a user. Once modified, it redirects to the home page.
 * RegisterServlet: it contains all needed to add a new user. Once added, it redirects to the home page.
 * Password: it contains all needed to make secured passwords.
+*Tools: it contains the method to find strange caracter in a login.
+* Constants : it contains all constants used in the program (Objects, Pages, Alerts, Attributs).
