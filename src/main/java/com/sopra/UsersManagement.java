@@ -1,11 +1,15 @@
 
 package com.sopra;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import javax.servlet.http.HttpServletRequest;
+
 
 @Stateless
 public class UsersManagement {
@@ -80,5 +84,11 @@ public class UsersManagement {
 		}
 		return false;
 	}
+	
+	public List<User> findAllUsers() {
+		TypedQuery<User> query = em.createQuery("from User", User.class);
+		return query.getResultList();
+	}
+	
 }
 
