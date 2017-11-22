@@ -7,7 +7,7 @@ public class Constants {
 
 
 	//OBJECTS
-	public static List<String> listChar = Arrays.asList(" ", "%", "é", "'", "+", "*");
+	public static List<String> listChar = Arrays.asList(" ", "%", "é", "'", "+", "*", "@");
 	public static Long ADMIN_MAX_RANK = (long) 2;
 	
 	//PAGES
