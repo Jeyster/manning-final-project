@@ -20,6 +20,8 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/sendEmail")
 
 // Il faut télécharger smtp4dev pour simuler une boite de reception de mail : https://smtp4dev.codeplex.com/
+// La servlet permet de générer un email et de l'envoyer à l'utilisateur qui recevra un lien pour changer son password.
+// Pour cela on envoie un lien contenant le "token" du user qui veut changer son password, ce qui permet de connaitre l'identité de la personne directement.
 
 public class EmailServlet extends HttpServlet {
 

@@ -7,8 +7,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Login</title>
+<link rel="stylesheet" href="Skeleton-2.0.4/css/normalize.css">
+<link rel="stylesheet" href="Skeleton-2.0.4/css/skeleton.css">
 </head>
-
+<body>
 	<h1>Login</h1>
 
 
@@ -22,11 +24,10 @@
     <button>Log In</button>
 </form>
 
-	<div>Not registered yet ? <a href="register">Register now!</a></div><br>
-	<div><a href="forgot">Forgot account?</a></div>
-	
-<link rel="stylesheet" href="Skeleton-2.0.4/css/normalize.css">
-<link rel="stylesheet" href="Skeleton-2.0.4/css/skeleton.css">
+	<div class = "link">Not registered yet ? <a href="register">Register now!</a></div><br>
+	<div class = "link"><a href="forgot">Forgot account?</a></div>
+</body>
+
 
 </html>
 
