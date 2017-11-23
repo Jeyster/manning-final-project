@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="Skeleton-2.0.4/css/normalize.css">
 <link rel="stylesheet" href="Skeleton-2.0.4/css/skeleton.css">
 </head>
-<<<<<<< HEAD
+<body>
 <!-- SCRIPT POUR ACCEDER AUX DONNEES FACEBOOK -->
 
 	<script>
@@ -69,9 +69,9 @@
 	
 <!-- FIN DES SCRIPTS FACEBOOK -->
 
-=======
-<body>
->>>>>>> 1d74f325483beae1e3190e5a23c819465c0ca7ec
+
+
+
 	<h1>Login</h1>
 
 
@@ -84,20 +84,14 @@
     
     <button>Log In</button>
 </form>
-<<<<<<< HEAD
-	<div>Not registered yet ? <a href="register">Register now!</a></div><br><br>
+	<div class = "link">Not registered yet ? <a href="<%=Constants.REGISTER_PAGE%>">Register now!</a></div><br>
+	<div class = "link"><a href="forgot">Forgot account?</a></div>
 	<div>Continue with Facebook : <fb:login-button scope="public_profile,email" onlogin="done()">
 	</fb:login-button></div>
 	
-<link rel="stylesheet" href="Skeleton-2.0.4/css/normalize.css">
-<link rel="stylesheet" href="Skeleton-2.0.4/css/skeleton.css">
-=======
 
-	<div class = "link">Not registered yet ? <a href="register">Register now!</a></div><br>
-	<div class = "link"><a href="forgot">Forgot account?</a></div>
+	
 </body>
-
->>>>>>> 1d74f325483beae1e3190e5a23c819465c0ca7ec
 
 </html>
 

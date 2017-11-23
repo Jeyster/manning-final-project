@@ -53,10 +53,9 @@ public class Password {
 
 	protected static SecureRandom random = new SecureRandom();
 
-	public String generateToken(User user, String login) {
+	public String generateToken() {
 
-		long longToken = Math.abs(random.nextLong());
-		String random = Long.toString(longToken, 16);
+		String random = toHex(getSalt());
 		return (random);
 	}
 

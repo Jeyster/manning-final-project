@@ -24,14 +24,7 @@ public class UsersServlet extends HttpServlet {
 		List<User> listUsers = userManagement.findAllUsers();
 		req.setAttribute("listUsers", listUsers);
 
-		if (user.getRank() < 2) {
-			req.getRequestDispatcher(Constants.HOME_PAGE).forward(req, resp);
-		}
-
-		else {
-
-			req.getRequestDispatcher("/WEB-INF/listUsers.jsp").forward(req, resp);
-		}
+		req.getRequestDispatcher("/WEB-INF/listUsers.jsp").forward(req, resp);
 	}
 
 }

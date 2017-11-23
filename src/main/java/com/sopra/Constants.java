@@ -11,7 +11,7 @@ public class Constants {
 	public static Long ADMIN_MAX_RANK = (long) 2;
 	
 	//PAGES
-	public static String HOME_PAGE = "home.html";
+	public static String HOME_PAGE = "home.jsp";
 	public static String EDITION_PAGE="edition.html";
 	public static String LOGIN_PAGE="login";
 	public static String REGISTER_PAGE="register";

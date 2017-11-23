@@ -23,9 +23,15 @@ public class ChangePasswordServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		req.getSession().removeAttribute(Constants.CONNECTED_USER_ATTRIBUTE);
-		req.setAttribute(Constants.ALERT_ATTRIBUTE, Alert.getAlert());
-		req.getRequestDispatcher("/WEB-INF/changePassword.jsp").forward(req, resp);
-
+		String token = req.getParameter("token");
+		User user = userManagement.findByToken(token);
+		if (user != null){
+			req.getSession().setAttribute(Constants.CONNECTED_USER_ATTRIBUTE, user);
+			req.setAttribute(Constants.ALERT_ATTRIBUTE, Alert.getAlert());
+			req.getRequestDispatcher("/WEB-INF/changePassword.jsp").forward(req, resp);
+		} else {
+			resp.sendRedirect(Constants.LOGIN_PAGE);
+		}
 	}
 
 	// doPost : On récupère le token du user qui veut changer son password.
@@ -35,7 +41,7 @@ public class ChangePasswordServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		User user = userManagement.findByToken(req.getParameter("token"));
+		User user = (User) req.getSession().getAttribute(Constants.CONNECTED_USER_ATTRIBUTE);
 
 		if (req.getParameterMap().containsKey("password")) {
 
@@ -54,6 +60,7 @@ public class ChangePasswordServlet extends HttpServlet {
 				Password mypassword = new Password();
 				user.setSalt(mypassword.getSalt());
 				user.setPassword(mypassword.generateStorngPasswordHash(req.getParameter("password"), user));
+				user.setToken(mypassword.generateToken());
 				userManagement.updateUser(user);
 			}
 		}
