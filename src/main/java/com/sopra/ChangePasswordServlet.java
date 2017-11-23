@@ -64,7 +64,7 @@ public class ChangePasswordServlet extends HttpServlet {
 				userManagement.updateUser(user);
 			}
 		}
-
+		req.getSession().removeAttribute(Constants.CONNECTED_USER_ATTRIBUTE);
 		resp.sendRedirect(Constants.LOGIN_PAGE);
 	}
 
