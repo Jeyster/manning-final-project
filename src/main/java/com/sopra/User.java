@@ -12,21 +12,38 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer id;
-	
-	@Column(unique=true)
-	private String login;
-	
-	private byte[] password;
-	
-	private byte[] salt;
-	
-	private String email;
-	
-	
-	
 
-	//GETTERS AND SETTERS
-	
+	@Column(unique = true)
+	private String login;
+
+	private byte[] password;
+
+	private byte[] salt;
+
+	private String email;
+
+	private Long rank;
+
+	private String token;
+
+	// GETTERS AND SETTERS
+
+	public Long getRank() {
+		return rank;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
+	public void setRank(Long rank) {
+		this.rank = rank;
+	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -34,7 +51,7 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
 	public byte[] getSalt() {
 		return salt;
 	}
@@ -42,7 +59,7 @@ public class User {
 	public void setSalt(byte[] salt) {
 		this.salt = salt;
 	}
-	
+
 	public Integer getId() {
 		return id;
 	}
@@ -66,5 +83,5 @@ public class User {
 	public void setPassword(byte[] password) {
 		this.password = password;
 	}
-	
+
 }

@@ -47,11 +47,11 @@ public class ModifyUserServlet extends HttpServlet {
 
 		if (req.getParameterMap().containsKey("login")) {
 			String login = req.getParameter("login");
-			
+
 			if (login.isEmpty()) {
 				Alert.setAlert(Constants.EMPTY_FIELD_ALERT);
 				resp.sendRedirect(Constants.EDITION_PAGE);
-				
+
 			} else if (userManagement.findByLogin(login) != null) {
 				Alert.setAlert(Constants.LOGIN_ALREADY_USED_ALERT);
 				resp.sendRedirect(Constants.EDITION_PAGE);
@@ -61,21 +61,20 @@ public class ModifyUserServlet extends HttpServlet {
 
 				Alert.setAlert(Constants.LOGIN_IS_NOT_CORRECT);
 				resp.sendRedirect(Constants.EDITION_PAGE);
-				
+
 			} else {
 				user.setLogin(req.getParameter("login"));
 				userManagement.updateUser(user);
 			}
 		}
-		
-		
+
 		if (req.getParameterMap().containsKey("email")) {
 			String email = req.getParameter("email");
-			
+
 			if (email.isEmpty()) {
 				Alert.setAlert(Constants.EMPTY_FIELD_ALERT);
 				resp.sendRedirect(Constants.EDITION_PAGE);
-				
+
 			} else if (userManagement.findByEmail(email) != null) {
 				Alert.setAlert(Constants.EMAIL_ALREADY_USED_ALERT);
 				resp.sendRedirect(Constants.EDITION_PAGE);
@@ -85,13 +84,13 @@ public class ModifyUserServlet extends HttpServlet {
 
 				Alert.setAlert(Constants.EMAIL_IS_NOT_VALID);
 				resp.sendRedirect(Constants.EDITION_PAGE);
-				
+
 			} else {
 				user.setEmail(req.getParameter("email"));
 				userManagement.updateUser(user);
 			}
 		}
-		
+
 		if (req.getParameterMap().containsKey("password")) {
 			String password = req.getParameter("password");
 			String passwordConfirm = req.getParameter("password-confirmation");
