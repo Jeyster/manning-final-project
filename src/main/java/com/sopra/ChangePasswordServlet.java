@@ -45,11 +45,11 @@ public class ChangePasswordServlet extends HttpServlet {
 			if (password.isEmpty() || passwordConfirmation.isEmpty()) {
 				Alert.setAlert(Constants.EMPTY_FIELD_ALERT);
 				resp.sendRedirect(
-						"http://localhost:8080/projet-final-1.0-SNAPSHOT/changePassword?token=" + user.getToken());
+						"http://localhost:8080/projet-final-1.0-SNAPSHOT/changePassword?token="+user.getToken());
 			} else if (!password.equals(passwordConfirmation)) {
 				Alert.setAlert(Constants.NOT_SAME_PASSWORD_ALERT);
 				resp.sendRedirect(
-						"http://localhost:8080/projet-final-1.0-SNAPSHOT/changePassword?token=" + user.getToken());
+						"http://localhost:8080/projet-final-1.0-SNAPSHOT/changePassword?token="+user.getToken());
 			} else {
 				Password mypassword = new Password();
 				user.setSalt(mypassword.getSalt());

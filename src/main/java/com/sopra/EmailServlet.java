@@ -31,7 +31,7 @@ public class EmailServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		User user = userManagement.findByToken(req.getParameter("userToken"));
+		User user = userManagement.findByToken(req.getParameter("token"));
 
 		// Adresse Email d'envoie
 		String to = user.getEmail();
