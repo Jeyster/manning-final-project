@@ -1,0 +1,36 @@
+@CHARSET "UTF-8";
+
+
+table {
+border-collapse:collapse;
+width:100%;
+max-width:700px;
+min-width:400px;
+text-align:center;
+}
+
+caption {
+caption-side:bottom;
+font-weight:bold;
+font-style:italic;
+margin:4px;
+}
+
+table,th, td {
+border: 1px solid gray;
+}
+
+th, td {
+height: 24px;
+padding:4px;
+vertical-align:middle;
+}
+th {
+	background-color: #0080ff;
+    color: white;
+}
+
+body {
+  
+  margin: 1em;
+}
