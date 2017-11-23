@@ -23,7 +23,7 @@ public class UserResource {
 
 	
 	@GET
-	public Response getTrains() {
+	public Response getUsers() {
 		List<User> trains = um.findAllUsers();
 		return Response
 				.status(Status.OK)
