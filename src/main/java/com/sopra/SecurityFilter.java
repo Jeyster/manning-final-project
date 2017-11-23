@@ -21,16 +21,20 @@ public class SecurityFilter implements Filter {
 
             HttpServletRequest request = (HttpServletRequest) req;
             HttpServletResponse response = (HttpServletResponse) resp;
-
+            
+            
             if (request.getRequestURI().endsWith(".css")
                     || request.getRequestURI().endsWith("/login")
                     || request.getRequestURI().endsWith("/register")
-                    || userManagement.validUserIsConnected(request))
+                    || userManagement.validUserIsConnected(request)
+                    || (request.getRequestURI().endsWith("/users") &&  userManagement.connectedUserIsAdmin(request))) {
                 chain.doFilter(req, resp);
+            }
             else
                 response.sendRedirect("login");
         } else {
-            chain.doFilter(req, resp);
+            chain.doFilter(req, resp); 
+            
         }
     }
 

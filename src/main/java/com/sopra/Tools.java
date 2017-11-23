@@ -2,8 +2,6 @@ package com.sopra;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 public class Tools {
 
 	public boolean checkStringsPresence(List<String> listString, String sentence) {

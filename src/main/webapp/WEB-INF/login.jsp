@@ -21,7 +21,9 @@
     
     <button>Log In</button>
 </form>
-	<div>Not registered yet ? <a href="register">Register now!</a></div>
+
+	<div>Not registered yet ? <a href="register">Register now!</a></div><br>
+	<div><a href="forgot">Forgot account?</a></div>
 	
 <link rel="stylesheet" href="Skeleton-2.0.4/css/normalize.css">
 <link rel="stylesheet" href="Skeleton-2.0.4/css/skeleton.css">
