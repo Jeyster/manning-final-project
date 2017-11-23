@@ -12,14 +12,17 @@
 </head>
 <body>
 
+	<%User user = (User) request.getSession().getAttribute(Constants.CONNECTED_USER_ATTRIBUTE);%>
+
 <h4>Hello world!</h4>
 	<a href="edition.html">Modify user</a><br>
-	<%User user = (User) request.getSession().getAttribute(Constants.CONNECTED_USER_ATTRIBUTE);
-	if (user.getRank()>1){%>
+	<%if (user.getRank()>1){%>
 	<a href ="users">List of users</a><br>
 	<%} %>
+	<%if (user.getRank()>1){%>
+	<a href ="go-to-angular">List of users with NgCli</a><br>
+	<%} %>
 	<a href ="disconnect">Sign out</a><br><br>
-	<a href="http://localhost:4200">Angular !!!</a>
 
 </body>
 </html>
