@@ -7,19 +7,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="Skeleton-2.0.4/css/listUsers.css">
 <title>List of Users</title>
 </head>
-<link rel="stylesheet" href="Skeleton-2.0.4/css/listUsers.css">
 <body>
 
 
 
 <h1>List of Users : </h1>
-
-
-
-
-<% User user = (User) request.getAttribute("user"); %>
 
 <% List<User> listUsers = (List<User>) request.getAttribute("listUsers"); %>
 
@@ -71,7 +66,7 @@ for (int i=0; i<listUsers.size(); i++){%>
 	
 	
 
-<a href="home.html" >Home</a>
+<a href="home.jsp" >Home</a>
 <br>
 <a href="edition.html" >Modify profil</a>
 <br>

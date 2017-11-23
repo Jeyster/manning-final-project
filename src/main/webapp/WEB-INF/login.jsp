@@ -11,6 +11,67 @@
 <link rel="stylesheet" href="Skeleton-2.0.4/css/skeleton.css">
 </head>
 <body>
+<!-- SCRIPT POUR ACCEDER AUX DONNEES FACEBOOK -->
+
+	<script>
+		window.fbAsyncInit = function() {
+			FB.init({
+				appId : '1681319908591975',
+				cookie : true,
+				xfbml : true,
+				version : 'v2.11'
+			});
+
+			FB.AppEvents.logPageView();
+
+			trigger();
+
+		};
+
+		(function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) {
+				return;
+			}
+			js = d.createElement(s);
+			js.id = id;
+			js.src = "https://connect.facebook.net/en_US/sdk.js";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+	</script>
+
+	<script>
+		function trigger() {
+			//some code that requires the FB object
+			//such as...
+			console.log('loaded')
+			FB.getLoginStatus(function(response) {
+				done(response);
+			});
+		}
+
+		function done(response) {
+			console.log('resp done', response)
+
+			FB.api('/'+response.authResponse.userID, function(response) {
+				console.log(response);
+
+			});
+			
+			
+			
+			FB.api('/'+response.authResponse.userID, {fields: 'email'}, function(response) {
+				console.log('email', response);
+
+			});
+		}
+	</script>
+	
+<!-- FIN DES SCRIPTS FACEBOOK -->
+
+
+
+
 	<h1>Login</h1>
 
 
@@ -23,11 +84,14 @@
     
     <button>Log In</button>
 </form>
-
-	<div class = "link">Not registered yet ? <a href="register">Register now!</a></div><br>
+	<div class = "link">Not registered yet ? <a href="<%=Constants.REGISTER_PAGE%>">Register now!</a></div><br>
 	<div class = "link"><a href="forgot">Forgot account?</a></div>
-</body>
+	<div>Continue with Facebook : <fb:login-button scope="public_profile,email" onlogin="done()">
+	</fb:login-button></div>
+	
 
+	
+</body>
 
 </html>
 
