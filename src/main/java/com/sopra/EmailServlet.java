@@ -65,7 +65,7 @@ public class EmailServlet extends HttpServlet {
 			message.setSubject("Change your password !");
 
 			// Contenu du message
-			message.setText("Hello " + user.getLogin() + " , click on the link below to change your password. "
+			message.setText("Hello " + user.getLogin() + " , copy the link below to change your password. "
 					+ "If you have an other problem, contact the administrator.   " + "\n\n"
 					+ "http://localhost:8080/projet-final-1.0-SNAPSHOT/changePassword?token="+user.getToken());
 

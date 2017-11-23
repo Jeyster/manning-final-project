@@ -34,4 +34,8 @@ using wildfly10x, create a mySQL datasource with the next properties:
 * Tools: it contains the method to find strange caracter or space in a login.
 * Email: it's just a test for create and send an email on smtp4dev.
 
+## Connection with fb
+
+* For the moment, the information required is only visible in the browser console: check it with F12
+
 
