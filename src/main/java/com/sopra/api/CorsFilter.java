@@ -7,6 +7,7 @@ import java.io.IOException;
 
 /**
  * Servlet Filter implementation class CorsFilter
+ * Add the necessarly headers to the requests done by the Angular client
  */
 @WebFilter("/*")
 public class CorsFilter implements Filter {
