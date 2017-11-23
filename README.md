@@ -25,4 +25,8 @@ using wildfly10x, create a mySQL datasource with the next properties:
 * Password: it contains all needed to make secured passwords.
 * Tools: it contains the method to find strange caracter or space in a login.
 
+## Connection with fb
+
+* For the moment, the information required is only visible in the browser console: check it with F12
+
 
