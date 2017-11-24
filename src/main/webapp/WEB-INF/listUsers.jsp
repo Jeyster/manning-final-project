@@ -14,7 +14,7 @@
 
 
 
-<h1>List of Users : </h1>
+<h1>Who is registered ? </h1>
 
 <% List<User> listUsers = (List<User>) request.getAttribute("listUsers"); %>
 
