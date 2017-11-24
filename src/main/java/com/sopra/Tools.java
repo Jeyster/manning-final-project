@@ -16,5 +16,9 @@ public class Tools {
 		}
 		return false;
 	}
+	
+	public String convertLoginWithSpaces(String login){
+		return login.replace(' ', '-');
+	}
 
 }
