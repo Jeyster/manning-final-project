@@ -88,7 +88,7 @@ public class ModifyUserServlet extends HttpServlet {
 				resp.sendRedirect(Constants.EDITION_PAGE);
 			}
 
-			else if (!email.contains("@")) {
+			else if (!email.matches("([^.@]+)(\\.[^.@]+)*@([^.@]+\\.)+([^.@]+)")) {
 
 				Alert.setAlert(Constants.EMAIL_IS_NOT_VALID);
 				resp.sendRedirect(Constants.EDITION_PAGE);

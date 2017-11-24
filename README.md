@@ -34,8 +34,15 @@ using wildfly10x, create a mySQL datasource with the next properties:
 * Tools: it contains the method to find strange caracter or space in a login.
 * Email: it's just a test for create and send an email on smtp4dev.
 
-## Connection with fb
+## Connection with fb :
 
 * For the moment, the information required is only visible in the browser console: check it with F12
 
 
+## For Angular :
+
+* Go on : https://github.com/Jeyster/manning-final-project-angular and clone the project in the console.
+
+* Go on the project and write :  "npm install" and after "ng serve".
+                                  
+* After, you can go on http://localhost:4200/ to have the Users Gestion with Angular by the link in the home menu when you are loggin in the project with an admin.
