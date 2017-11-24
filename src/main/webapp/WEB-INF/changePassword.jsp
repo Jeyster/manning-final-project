@@ -11,6 +11,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Change your password</title>
+<link rel="stylesheet" href="Skeleton-2.0.4/css/normalize.css">
+<link rel="stylesheet" href="Skeleton-2.0.4/css/skeleton.css">
 </head>
 <body>
 

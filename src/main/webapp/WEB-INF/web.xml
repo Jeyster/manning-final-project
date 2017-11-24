@@ -9,8 +9,4 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  <servlet-mapping>
-    <servlet-name>ResetPassServlet</servlet-name>
-    <url-pattern>/ResetPassServlet</url-pattern>
-  </servlet-mapping>
 </web-app>

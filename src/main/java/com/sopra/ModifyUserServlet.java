@@ -44,11 +44,20 @@ public class ModifyUserServlet extends HttpServlet {
 		User user = (User) req.getSession().getAttribute(Constants.CONNECTED_USER_ATTRIBUTE);
 
 		Tools tools = new Tools();
-
-		if (req.getParameterMap().containsKey("login")) {
+		
+		Password mypassword = new Password();
+		
+		String userPassword = req.getParameter("currentPassword");
+		
+		if (!mypassword.toHex(user.getPassword()).equals(mypassword.toHex(mypassword.generateStorngPasswordHash(userPassword, user)))){
+			Alert.setAlert(Constants.BAD_PASSWORD_ALERT);
+			resp.sendRedirect(Constants.EDITION_PAGE);
+		}
+		
+		else if (req.getParameterMap().containsKey("login")) {
 			String login = req.getParameter("login");
-
-			if (login.isEmpty()) {
+			
+			  if (login.isEmpty()) {
 				Alert.setAlert(Constants.EMPTY_FIELD_ALERT);
 				resp.sendRedirect(Constants.EDITION_PAGE);
 
@@ -68,10 +77,9 @@ public class ModifyUserServlet extends HttpServlet {
 			}
 		}
 
-		if (req.getParameterMap().containsKey("email")) {
+		else if (req.getParameterMap().containsKey("email")) {
 			String email = req.getParameter("email");
-
-			if (email.isEmpty()) {
+			 if (email.isEmpty()) {
 				Alert.setAlert(Constants.EMPTY_FIELD_ALERT);
 				resp.sendRedirect(Constants.EDITION_PAGE);
 
@@ -80,7 +88,7 @@ public class ModifyUserServlet extends HttpServlet {
 				resp.sendRedirect(Constants.EDITION_PAGE);
 			}
 
-			else if (tools.checkStringsPresence(Constants.listChar, email)) {
+			else if (!email.contains("@")) {
 
 				Alert.setAlert(Constants.EMAIL_IS_NOT_VALID);
 				resp.sendRedirect(Constants.EDITION_PAGE);
@@ -91,7 +99,7 @@ public class ModifyUserServlet extends HttpServlet {
 			}
 		}
 
-		if (req.getParameterMap().containsKey("password")) {
+		else if (req.getParameterMap().containsKey("password")) {
 			String password = req.getParameter("password");
 			String passwordConfirm = req.getParameter("password-confirmation");
 			if (password.isEmpty() || passwordConfirm.isEmpty()) {
@@ -101,7 +109,6 @@ public class ModifyUserServlet extends HttpServlet {
 				Alert.setAlert(Constants.NOT_SAME_PASSWORD_ALERT);
 				resp.sendRedirect(Constants.EDITION_PAGE);
 			} else {
-				Password mypassword = new Password();
 				user.setSalt(mypassword.getSalt());
 				user.setPassword(mypassword.generateStorngPasswordHash(req.getParameter("password"), user));
 				userManagement.updateUser(user);

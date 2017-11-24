@@ -50,7 +50,7 @@ for (int i=0; i<listUsers.size(); i++){%>
 
 <form method='post' action="sendEmail">
 	
-	<input  type='hidden'  name='userToken' value='<%= listUsers.get(i).getToken()%>'/>
+	<input  type='hidden'  name='token' value='<%=listUsers.get(i).getToken()%>'/>
 	<button>Send Email to reset password</button>
 	</form>
 </td>
