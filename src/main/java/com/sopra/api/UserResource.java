@@ -38,5 +38,38 @@ public class UserResource {
 				.build();
 	}
 	
+	
+	/* Méthode POST 
+	 * -----------------
+	 * Path : api/users/update 
+	 * Retourne le user modifié
+	 * ----------------- */
+	@POST
+	@Path("update")
+	public Response updateUser(User user) {
+		um.updateUser(user);
+		return Response
+				.status(Status.OK)
+				.entity(user)
+				.build();
+	}
+	
+	/* Méthode DELETE 
+	 * -----------------
+	 * Path : api/users/{id}
+	 * Retourne le user supprimé
+	 * ----------------- */
+	@DELETE
+	@Path("{id}")
+	public Response deleteUser(@PathParam("id") int id) {
+		User user = um.deleteUserById(id);
+		return Response
+				.status(Status.OK)
+				.entity(user)
+				.build();
+	}
+
+
+	
 
 }
