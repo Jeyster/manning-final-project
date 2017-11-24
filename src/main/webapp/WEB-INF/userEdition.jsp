@@ -19,19 +19,22 @@
 <h3>Edit login</h3>
 <form method='post' class="container" max-width: 960px>
 	<label class= "row"><span class="three columns"> New login: </span><input class="nine columns" type="text" name = "login"></label>
+	<label class= "row"><span class="three columns"> Password: </span><input class="nine columns" type="password" name ="currentPassword"></label>
 	<button>Edit login</button>
 </form>
 
 <h3>Edit email</h3>
 <form method='post' class="container" max-width: 960px>
 	<label class= "row"><span class="three columns"> New email: </span><input class="nine columns" type="email" name = "email"></label>
+	<label class= "row"><span class="three columns"> Password: </span><input class="nine columns" type="password" name ="currentPassword"></label>
 	<button>Edit email</button>
 </form>
 
 <h3>Edit password</h3>
 <form method="post" class="container" max-width: 960px>
-	<label class= "row"><span class="three columns"> Password: </span><input class="nine columns" type="password" name = "password"></label>
-	<label class= "row"><span class="three columns"> Confirm password: </span><input class="nine columns" type="password" name = "password-confirmation"></label>
+    <label class= "row"><span class="three columns"> Current password: </span><input class="nine columns" type="password" name ="currentPassword"></label>
+	<label class= "row"><span class="three columns"> New password: </span><input class="nine columns" type="password" name = "password"></label>
+	<label class= "row"><span class="three columns"> Confirm new password: </span><input class="nine columns" type="password" name = "password-confirmation"></label>
 	
 	<button>Edit password</button>
 	

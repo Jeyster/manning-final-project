@@ -16,6 +16,15 @@ public class UsersManagement {
 	@PersistenceContext(name = "Login")
 	EntityManager em;
 
+	
+	public User findSuperAdmin(){
+		Query query = em.createQuery("from User u where u.rank=:rank").setParameter("rank", Constants.ADMIN_MAX_RANK);
+		
+		return (User) query.getSingleResult();
+		
+	}
+	
+	
 	public Long countNumberOfUsers() {
 		Query query = em.createQuery("select count(u) from User u");
 		return (Long) query.getSingleResult();

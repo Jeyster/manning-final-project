@@ -32,12 +32,14 @@ public class EmailServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		User user = userManagement.findByToken(req.getParameter("token"));
+		
+		User superAdmin = userManagement.findSuperAdmin();
 
 		// Adresse Email d'envoie
 		String to = user.getEmail();
 
 		// Adresse Email de reception
-		String from = "jordan@jordan.fr";
+		String from = superAdmin.getEmail() ;
 
 		// On suppose que l'on envoit un email de localhost
 		String host = "localhost";
