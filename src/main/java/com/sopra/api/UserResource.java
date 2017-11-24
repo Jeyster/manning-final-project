@@ -38,5 +38,21 @@ public class UserResource {
 				.build();
 	}
 	
+	
+	/* Méthode POST 
+	 * -----------------
+	 * Path : api/users/update 
+	 * Retourne le user modifié
+	 * ----------------- */
+	@POST
+	@Path("update")
+	public Response updateUser(User user) {
+		um.updateUser(user);
+		return Response
+				.status(Status.OK)
+				.entity(user)
+				.build();
+	}
+	
 
 }
