@@ -17,10 +17,10 @@ public class EmailService {
         try {
         	
         	String host="smtp.gmail.com";
-        	String user = "your email";
-        	String password = "your password";
-        	String to = "your email";
-        	String from = "your email";
+        	String user = "samanthadray@gmail.com";
+        	String password = "#il0v3COCONUTS";
+        	String to = "baboutata2009@gmail.com";
+        	String from = "samanthadray@gmail.com";
         	String subject = "this is a test";
         	String messageText = "If you want to reset your password click here";
         	
