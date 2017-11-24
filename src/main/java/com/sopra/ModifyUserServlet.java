@@ -66,7 +66,7 @@ public class ModifyUserServlet extends HttpServlet {
 				resp.sendRedirect(Constants.EDITION_PAGE);
 			}
 
-			else if (!tools.loginValidation(login)) {
+			else if (tools.checkStringsPresence(Constants.listChar, login)) {
 
 				Alert.setAlert(Constants.LOGIN_IS_NOT_CORRECT);
 				resp.sendRedirect(Constants.EDITION_PAGE);

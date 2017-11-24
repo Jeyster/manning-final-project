@@ -73,7 +73,7 @@ public class RegisterServlet extends HttpServlet {
 
 			resp.sendRedirect(Constants.REGISTER_PAGE);
 
-		} else if (tools.loginValidation(login) == false) {
+		} else if (tools.checkStringsPresence(Constants.listChar, login)) {
 
 			Alert.setAlert(Constants.LOGIN_IS_NOT_CORRECT);
 			resp.sendRedirect(Constants.REGISTER_PAGE);
