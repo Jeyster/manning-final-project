@@ -18,12 +18,7 @@ public class GoToAngularServlet extends HttpServlet{
 		User user = (User) req.getSession().getAttribute(Constants.CONNECTED_USER_ATTRIBUTE);
 		Long userRank = user.getRank();
 
-		if (userRank < 2) {
-			req.setAttribute("userRank", userRank);
-			req.getRequestDispatcher(Constants.HOME_PAGE).forward(req, resp);
-		} else {
-			resp.sendRedirect("http://localhost:4200");
-		}
+		resp.sendRedirect("http://localhost:4200");
 	}
 	
 	
