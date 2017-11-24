@@ -120,4 +120,17 @@ public class UsersManagement {
 		}
 	}
 
+
+	public User getUserById(int id) {
+		User user = em.find(User.class, id);
+		return user;
+	}
+
+
+	public User deleteUserById(int id) {
+		User user = this.getUserById(id);
+		em.remove(user);
+		return user;
+	}
+
 }
