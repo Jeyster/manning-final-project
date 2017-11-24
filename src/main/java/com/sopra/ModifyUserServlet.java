@@ -66,7 +66,7 @@ public class ModifyUserServlet extends HttpServlet {
 				resp.sendRedirect(Constants.EDITION_PAGE);
 			}
 
-			else if (tools.checkStringsPresence(Constants.listChar, login)) {
+			else if (!tools.loginValidation(login)) {
 
 				Alert.setAlert(Constants.LOGIN_IS_NOT_CORRECT);
 				resp.sendRedirect(Constants.EDITION_PAGE);
@@ -88,7 +88,7 @@ public class ModifyUserServlet extends HttpServlet {
 				resp.sendRedirect(Constants.EDITION_PAGE);
 			}
 
-			else if (!email.contains("@")) {
+			else if (!email.matches("([^.@]+)(\\.[^.@]+)*@([^.@]+\\.)+([^.@]+)")) {
 
 				Alert.setAlert(Constants.EMAIL_IS_NOT_VALID);
 				resp.sendRedirect(Constants.EDITION_PAGE);
