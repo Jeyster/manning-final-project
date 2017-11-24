@@ -11,8 +11,11 @@ import com.sopra.UsersManagement;
 
 import java.util.List;
 
+/* Service REST interrogé par notre application */
+
 @Path("users")
 @Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 public class UserResource {
 
 	public UserResource() {
@@ -21,7 +24,11 @@ public class UserResource {
 	@EJB
 	private UsersManagement um;
 
-	
+	/* Méthode GET 
+	 * -----------------
+	 * Path : api/users 
+	 * Retourne la liste des users au format JSON 
+	 * ----------------- */
 	@GET
 	public Response getUsers() {
 		List<User> trains = um.findAllUsers();

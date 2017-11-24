@@ -6,9 +6,12 @@ import java.util.List;
 public class Constants {
 
 
+	
+
 	//OBJECTS
-	public static List<String> listChar = Arrays.asList(" ", "%", "é", "'", "+", "*", "@");
+	public static List<String> listChar = Arrays.asList(" ", "%", "é", "'", "+",".","@", "*");
 	public static Long ADMIN_MAX_RANK = (long) 2;
+
 	
 	//PAGES
 	public static String HOME_PAGE = "home.jsp";
@@ -24,6 +27,7 @@ public class Constants {
 	public static String EMPTY_FIELD_ALERT = "Error: login and password can't be empty";
 	public static String EMAIL_IS_NOT_VALID = "Error, you must enter a valid email";	
 	public static String EMAIL_ALREADY_USED_ALERT = "Error: email is already used";
+	public static String RESET_PASSWORD = "";
 	public static String LOGIN_IS_NOT_CORRECT = "Error: login not correct, do not use space " + String.join(" , ", listChar );
 	
 	//ATTRIBUTES	

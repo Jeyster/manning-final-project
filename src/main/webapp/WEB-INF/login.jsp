@@ -84,11 +84,14 @@
     
     <button>Log In</button>
 </form>
+
+	<div> Forgot your password? <a href="sendResetPassword">Recover now!</a></div>
 	<div class = "link">Not registered yet ? <a href="<%=Constants.REGISTER_PAGE%>">Register now!</a></div><br>
-	<div class = "link"><a href="forgot">Forgot account?</a></div>
+	
 	<div>Continue with Facebook : <fb:login-button scope="public_profile,email" onlogin="done()">
 	</fb:login-button></div>
 	
+
 
 	
 </body>

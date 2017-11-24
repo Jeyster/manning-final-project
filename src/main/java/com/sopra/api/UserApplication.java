@@ -5,6 +5,8 @@ import javax.ws.rs.core.Application;
 import java.util.HashSet;
 import java.util.Set;
 
+/* Nécessaire au fonctionnement d'une api JAX-RS */
+
 @ApplicationPath("api")
 public class UserApplication extends Application{
 
