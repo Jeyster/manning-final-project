@@ -71,6 +71,9 @@ public class LoginServlet extends HttpServlet {
 			
 			req.getSession().setAttribute(Constants.CONNECTED_USER_ATTRIBUTE, user);
 			
+			// Ferme la session après 10*60 secondes d'inactivité
+			req.getSession().setMaxInactiveInterval(10*60);
+			
 			int count = user.getCount();
 			user.setCount(count + 1);
 			userManagement.updateUser(user);
