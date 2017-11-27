@@ -1,3 +1,5 @@
+<%@page import="com.sopra.Tools"%>
+<%@page import="com.sopra.Constants"%>
 <%@page import="com.sopra.Password"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -16,7 +18,8 @@
 
 <h1>Who is registered ? </h1>
 
-<% List<User> listUsers = (List<User>) request.getAttribute("listUsers"); %>
+<% List<User> listUsers = (List<User>) request.getAttribute("listUsers");
+Tools tools = new Tools();%>
 
  
 <table>
@@ -41,20 +44,16 @@ for (int i=0; i<listUsers.size(); i++){%>
 <td><%= listUsers.get(i).getLogin() %></td>
 <td><%= listUsers.get(i).getEmail() %></td>
 <td><%=listUsers.get(i).getRank()%></td>
-<!--  
-<td><%=password.toHex(listUsers.get(i).getPassword())%></td>
-<td><%=listUsers.get(i).getToken()%></td>
--->
-
 <td>
+<%if (!tools.isAFacebookUser(listUsers.get(i))){ %>
 
 <form method='post' action="sendEmail">
 	
 	<input  type='hidden'  name='token' value='<%=listUsers.get(i).getToken()%>'/>
 	<button>Send Email to reset password</button>
 	</form>
+	<%} %>
 </td>
-
 
 	<% } %>
 

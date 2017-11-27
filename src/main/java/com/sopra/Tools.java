@@ -43,5 +43,12 @@ public class Tools {
 		return false;
 
 	}
+	
+	public boolean isAFacebookUser(User user){
+		if (user.getFacebookId()!=null){
+			return true;
+		}
+		return false;
+	}
 
 }
