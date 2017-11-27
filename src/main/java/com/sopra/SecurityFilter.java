@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-//@WebFilter(filterName = "SecurityFilter", urlPatterns = "*")
+@WebFilter(filterName = "SecurityFilter", urlPatterns = "*")
 public class SecurityFilter implements Filter {
     
 	@EJB
@@ -26,6 +26,8 @@ public class SecurityFilter implements Filter {
             if (request.getRequestURI().endsWith(".css")
                     || request.getRequestURI().endsWith("/login")
                     || request.getRequestURI().endsWith("/register")
+                    || request.getRequestURI().endsWith("/facebook")
+                    || request.getRequestURI().endsWith("/facebookConnection.html")
                     || request.getRequestURI().contains("/api/users")
                     || userManagement.validUserIsConnected(request)
                     || (request.getRequestURI().endsWith("/users") &&  userManagement.connectedUserIsAdmin(request))) {

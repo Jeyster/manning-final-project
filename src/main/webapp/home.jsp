@@ -18,8 +18,6 @@
 	<a href="edition.html">Modify user</a><br>
 	<%if (user.getRank()>1){%>
 	<a href ="users">List of users</a><br>
-	<%} %>
-	<%if (user.getRank()>1){%>
 	<a href ="go-to-angular">List of users with NgCli</a><br>
 	<%} %>
 	<a href ="disconnect">Sign out</a><br><br>
