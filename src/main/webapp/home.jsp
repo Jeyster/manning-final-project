@@ -14,6 +14,10 @@
 <body>
 
 	<%User user = (User) request.getSession().getAttribute(Constants.CONNECTED_USER_ATTRIBUTE);%>
+	
+<span>
+<%=user.getLogin() %> is connected.
+</span>
 
 <h4>Hello world!</h4>
 	<%Tools tools = new Tools();

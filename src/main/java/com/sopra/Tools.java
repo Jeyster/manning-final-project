@@ -32,8 +32,8 @@ public class Tools {
 
 		Matcher hasLetter = letter.matcher(sentence);
 		Matcher hasSpecial = special.matcher(sentence);
-		boolean b = hasLetter.find();
-		boolean c = hasSpecial.find();
+		boolean b = hasLetter.matches();
+		boolean c = hasSpecial.matches();
 		
 
 		if (b == true || c == true ) {
@@ -42,13 +42,6 @@ public class Tools {
 
 		return false;
 
-	}
-	
-	public boolean isAFacebookUser(User user){
-		if (user.getFacebookId()!=null){
-			return true;
-		}
-		return false;
 	}
 
 }
