@@ -31,9 +31,9 @@
 	<a href ="disconnect">Sign out</a><br><br>
 
 
-	
+	Compteur : <%= user.getCount() %>
 
-<!--  Compteur : <%= user.getCount() %>-->
+  
 
 	
 
