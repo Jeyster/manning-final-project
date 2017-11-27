@@ -25,8 +25,19 @@ public class User {
 	private Long rank;
 
 	private String token;
+	
+	@Column(unique = true)
+	private String facebookId;
 
 	// GETTERS AND SETTERS
+
+	public String getFacebookId() {
+		return facebookId;
+	}
+
+	public void setFacebookId(String facebookId) {
+		this.facebookId = facebookId;
+	}
 
 	public Long getRank() {
 		return rank;

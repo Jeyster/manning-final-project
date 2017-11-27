@@ -38,7 +38,10 @@
 	
 	<button>Edit password</button>
 	
-<div>Return <a href='<%=Constants.HOME_PAGE%>'>home</a></div>
+	<br>
+	<br>
+	
+<div class ="home">Return <a href='<%=Constants.HOME_PAGE%>'>home</a></div>
 
 	
 <link rel="stylesheet" href="Skeleton-2.0.4/css/normalize.css">

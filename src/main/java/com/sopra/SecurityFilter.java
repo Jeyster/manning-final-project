@@ -26,7 +26,9 @@ public class SecurityFilter implements Filter {
             if (request.getRequestURI().endsWith(".css")
                     || request.getRequestURI().endsWith("/login")
                     || request.getRequestURI().endsWith("/register")
-                    || request.getRequestURI().endsWith("/api/users")
+                    || request.getRequestURI().endsWith("/facebook")
+                    || request.getRequestURI().endsWith("/facebookConnection.html")
+                    || request.getRequestURI().contains("/api/users")
                     || userManagement.validUserIsConnected(request)
                     || (request.getRequestURI().endsWith("/users") &&  userManagement.connectedUserIsAdmin(request))) {
                 chain.doFilter(req, resp);

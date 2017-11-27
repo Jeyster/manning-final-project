@@ -11,8 +11,12 @@
 <link rel="stylesheet" href="Skeleton-2.0.4/css/skeleton.css">
 </head>
 <body>
-<!-- SCRIPT POUR ACCEDER AUX DONNEES FACEBOOK -->
+<!-- SCRIPT POUR UTILISER JQUERY -->
 
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- SCRIPT POUR ACCEDER AUX DONNEES FACEBOOK -->
+	
 	<script>
 		window.fbAsyncInit = function() {
 			FB.init({
@@ -23,9 +27,15 @@
 			});
 
 			FB.AppEvents.logPageView();
-
-			trigger();
-
+			
+			FB.getLoginStatus(function(response) {
+				if (response.status === 'connected'){
+					console.log("Connected to Facebook")
+				} else if (response.status === 'unknown'){
+					console.log("Not connected to Facebook yet");
+				}
+				
+			});
 		};
 
 		(function(d, s, id) {
@@ -38,33 +48,6 @@
 			js.src = "https://connect.facebook.net/en_US/sdk.js";
 			fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));
-	</script>
-
-	<script>
-		function trigger() {
-			//some code that requires the FB object
-			//such as...
-			console.log('loaded')
-			FB.getLoginStatus(function(response) {
-				done(response);
-			});
-		}
-
-		function done(response) {
-			console.log('resp done', response)
-
-			FB.api('/'+response.authResponse.userID, function(response) {
-				console.log(response);
-
-			});
-			
-			
-			
-			FB.api('/'+response.authResponse.userID, {fields: 'email'}, function(response) {
-				console.log('email', response);
-
-			});
-		}
 	</script>
 	
 <!-- FIN DES SCRIPTS FACEBOOK -->
@@ -88,7 +71,7 @@
 	<div> Forgot your password? <a href="forgotPass.jsp">Recover now!</a></div>
 	<div class = "link">Not registered yet ? <a href="<%=Constants.REGISTER_PAGE%>">Register now!</a></div><br>
 	
-	<div>Continue with Facebook : <fb:login-button scope="public_profile,email" onlogin="done()">
+	<div>Continue with Facebook : <fb:login-button scope="public_profile,email" onlogin="window.location='http://localhost:8080/projet-final-1.0-SNAPSHOT/facebookConnection.html'">
 	</fb:login-button></div>
 	
 

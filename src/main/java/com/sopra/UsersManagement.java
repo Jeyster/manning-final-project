@@ -120,4 +120,44 @@ public class UsersManagement {
 		}
 	}
 
+
+	public User findByFbId(String userFbId) {
+		Query query = em.createQuery("from User u where u.facebookId=:facebookId").setParameter("facebookId", userFbId);
+
+		try {
+			User user = (User) query.getSingleResult();
+			return user;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public User addFbUser(String login, String id, String email) {
+		User user = new User();
+		Tools tools = new Tools();
+		user.setLogin(tools.convertLoginWithSpaces(login));
+		user.setEmail(email);
+		user.setFacebookId(id);
+		if (countNumberOfUsers() == 0) {
+			user.setRank(Constants.ADMIN_MAX_RANK);
+		} else {
+			user.setRank((long) 1);
+		}
+		em.merge(user);
+		return user;
+	}
+	
+	public User getUserById(int id) {
+		User user = em.find(User.class, id);
+		return user;
+	}
+
+
+	public User deleteUserById(int id) {
+		User user = this.getUserById(id);
+		em.remove(user);
+		return user;
+	}
+
 }

@@ -1,3 +1,4 @@
+<%@page import="com.sopra.Tools"%>
 <%@page import="com.sopra.Constants"%>
 <%@page import="com.sopra.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -15,11 +16,12 @@
 	<%User user = (User) request.getSession().getAttribute(Constants.CONNECTED_USER_ATTRIBUTE);%>
 
 <h4>Hello world!</h4>
+	<%Tools tools = new Tools();
+	if (!tools.isAFacebookUser(user)){ %>
 	<a href="edition.html">Modify user</a><br>
-	<%if (user.getRank()>1){%>
+	<%}
+	if (user.getRank()>1){%>
 	<a href ="users">List of users</a><br>
-	<%} %>
-	<%if (user.getRank()>1){%>
 	<a href ="go-to-angular">List of users with NgCli</a><br>
 	<%} %>
 	<a href ="disconnect">Sign out</a><br><br>

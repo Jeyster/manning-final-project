@@ -35,3 +35,16 @@ body {
   
   margin: 1em;
 }
+
+table tr:hover td {
+	background: #f2f2f2;
+	
+}
+
+h1 { color: #111; 
+font-family: 'Helvetica Neue', sans-serif; 
+font-size: 50px; 
+font-weight: bold; 
+letter-spacing: -1px; 
+line-height: 1; 
+ }

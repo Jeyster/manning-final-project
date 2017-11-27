@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Connecting to Facebook...</title>
+</head>
+<body>
+
+<!-- SCRIPT POUR UTILISER JQUERY -->
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- SCRIPT POUR ACCEDER AUX DONNEES FACEBOOK -->
+	
+	<script>
+		window.fbAsyncInit = function() {
+			FB.init({
+				appId : '1681319908591975',
+				cookie : true,
+				xfbml : true,
+				version : 'v2.11'
+			});
+
+			FB.AppEvents.logPageView();
+			
+			trigger();
+
+		};
+
+		(function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) {
+				return;
+			}
+			js = d.createElement(s);
+			js.id = id;
+			js.src = "https://connect.facebook.net/en_US/sdk.js";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+	</script>
+
+	<script>
+		function trigger() {
+			//some code that requires the FB object
+			//such as...
+			console.log('Loaded');
+
+			FB.getLoginStatus(function(response) {
+				if (response.status === 'connected'){
+					done(response);
+				} else if (response.status === 'unknown'){
+					console.log("Not connected yet");
+				}
+				
+			});
+		}
+
+		function done(response) {
+			
+			FB.api('/'+response.authResponse.userID, {fields: 'email,name'}, function(response) {
+				console.log(response);
+				console.log(response.email);
+				console.log(response.name);
+				console.log(response.id);
+				let userName = response.name;
+				let userEmail = response.email;
+				let userFbId = response.id;
+				console.log(typeof userName);
+				$.ajax(
+				        {
+				            url: "http://localhost:8080/projet-final-1.0-SNAPSHOT/facebook",
+				            type: "post",
+				            data:{'email': userEmail, 'name': userName, 'id': userFbId}
+				        }
+				    )
+				    .then(data=>{console.log(data); window.location="http://localhost:8080/projet-final-1.0-SNAPSHOT/home.jsp"})
+				    .catch(e=>console.log(e))
+
+			});
+		}
+	</script>
+	
+<!-- FIN DES SCRIPTS FACEBOOK -->
+
+</body>
+</html>
