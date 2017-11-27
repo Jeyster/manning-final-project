@@ -27,19 +27,16 @@ public class Tools {
 
 	public boolean loginValidation(String sentence) {
 		
-		Pattern letter = Pattern.compile("[a-zA-Z]+");
-		Pattern digit = Pattern.compile("[0-9]+");
+		Pattern letter = Pattern.compile("[^a-zA-Z0-9]+");
 		Pattern special = Pattern.compile("[.-_]+[^@]");
 
 		Matcher hasLetter = letter.matcher(sentence);
-		Matcher hasDigit = digit.matcher(sentence);
 		Matcher hasSpecial = special.matcher(sentence);
-		boolean b = hasLetter.matches();
-		boolean c = hasDigit.matches();
-		boolean d = hasSpecial.matches();
+		boolean b = hasLetter.find();
+		boolean c = hasSpecial.find();
 		
 
-		if (b == true || c == true || d == true) {
+		if (b == true || c == true ) {
 			return true;
 		}
 
