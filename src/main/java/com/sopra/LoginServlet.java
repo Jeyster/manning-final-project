@@ -71,9 +71,9 @@ public class LoginServlet extends HttpServlet {
 			
 			req.getSession().setAttribute(Constants.CONNECTED_USER_ATTRIBUTE, user);
 			
-			int count = user.getCount();
-			user.setCount(count + 1);
-			userManagement.updateUser(user);
+			//int count = user.getCount();
+			//user.setCount(count + 1);
+			//userManagement.updateUser(user);
 			resp.sendRedirect(Constants.HOME_PAGE);
 			
 			

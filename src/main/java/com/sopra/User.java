@@ -26,7 +26,7 @@ public class User {
 
 	private String token;
 	
-	private Integer count;
+	//private Integer count;
 	
 	@Column(unique = true)
 	private String facebookId;

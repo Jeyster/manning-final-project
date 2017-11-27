@@ -33,7 +33,7 @@
 
 	
 
-Compteur : <%= user.getCount() %>
+<!--  Compteur : <%= user.getCount() %>-->
 
 	
 
