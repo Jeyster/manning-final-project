@@ -10,10 +10,9 @@
 <h1>forgot Password</h1>
 
 
-<form method="post" class="container" max-width: 960px>
-    <label class= "row"><span class="three columns">your email:</span> <input class="nine columns"  type="email" name="email"></label>
-    
-    
+<form method="post" action= "forgotPass" class="container" max-width: 960px>
+    <label class= "row"><span class="three columns">your email:</span> <input class="nine columns"  type="text" name="email"></label>
+  
     <button>send mail</button>
 </form>
 	

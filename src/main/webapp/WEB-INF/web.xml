@@ -9,4 +9,14 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>ResetPassServlet</display-name>
+    <servlet-name>ResetPassServlet</servlet-name>
+    <servlet-class>com.sopra.ResetPassServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ResetPassServlet</servlet-name>
+    <url-pattern>/ResetPassServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

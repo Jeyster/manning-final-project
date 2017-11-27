@@ -26,9 +26,11 @@ public class ForgotPassServlet extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		req.setAttribute(Constants.ALERT_ATTRIBUTE, Alert.getAlert());
 		req.getRequestDispatcher("/WEB-INF/forgotPass.jsp").forward(req, resp);
 	}
-	
+
 @SuppressWarnings("restriction")
 protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	User user = new User();
@@ -36,39 +38,40 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
 		//récuperer tous les paramètres de la JSP
 		String email= req.getParameter("email");
 		
+		
 		if (email.equals(null)||email==""){
 			req.setAttribute("msg", "All Fields are mendatory" );
-			getServletContext().getRequestDispatcher("/forgotPass.jsp").forward(req, resp);
+			getServletContext().getRequestDispatcher("/forgotPass").forward(req, resp);
 		}
 		
-		else if (!email.equals(User.class)){
+		else if (userManagement.findByEmail(email)==null){
 			req.setAttribute("msg", "email isn't register in database" );
-			getServletContext().getRequestDispatcher("/resetPass.jsp").forward(req, resp);
+			getServletContext().getRequestDispatcher("/forgotPass").forward(req, resp);
 		}
 		else{
 			user = userManagement.findByEmail(email);
-			user = userManagement.findByToken(req.getParameter("token"));
+			}
 			
-		}
-
    try {
    	
-   	String host="smtp.gmail.com";
-   	String password = "dada4848";
+   	String host="smtp.laposte.net";
+   	String password = "Dada4848";
+   	String userName = "achemenides486@laposte.net";
    	String to = user.getEmail();
-   	String from = "achemenides486@gmail.com";
-   	String subject = "";
-   	String messageText = "";
+   	String from = "achemenides486@laposte.net";
+   	String subject = "Password Modification";
+   	String messageText = "Hello " + user.getLogin() + "copy the link below to change your password. "
+				+ "If you have an other problem, contact the administrator.   " + "\n\n"
+				+ "http://localhost:8080/projet-final-1.0-SNAPSHOT/changePassword?token="+user.getToken();
    	
    	boolean sessionDebug= false;
-   	
    	
        // Use javamail api, set parameters from registration.properties file
        // set the session properties
        Properties props = System.getProperties();
        props.put("mail.smtp.starttls.enable", "true");
-       props.put("mail.smtp.host", "smtp.gmail.com");
-       props.put("mail.smtp.port", "587");
+       props.put("mail.smtp.host", "smtp.laposte.net");
+       props.put("mail.smtp.port", "25");
        props.put("mail.smtp.auth", "true");
        props.put("mail.smtp.starttls.required", "true");
        Session session = Session.getDefaultInstance(props, null);
@@ -95,10 +98,12 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
        tr.sendMessage(message, message.getAllRecipients());
        tr.close();
        System.out.println("Mail sent successfully.");
-       message.setText("<html><body>Hello " + user.getLogin() + " <br/> copy the link below to change your password. "
+       message.setText("Hello " + user.getLogin() + "copy the link below to change your password. "
 				+ "If you have an other problem, contact the administrator.   " + "\n\n"
-				+ "http://localhost:8080/projet-final-1.0-SNAPSHOT/resetPass?token="+user.getToken());
+				+ "http://localhost:8080/projet-final-1.0-SNAPSHOT/changePassword?token="+user.getToken());
+       resp.sendRedirect("http://localhost:8080/projet-final-1.0-SNAPSHOT/login");
 
    }catch (MessagingException e) {
       System.out.println("Error in method sendEmailNotification: " + e);
    }}}
+
