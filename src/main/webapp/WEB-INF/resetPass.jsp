@@ -16,7 +16,7 @@
     <div class = "alert">${alert}</div>
 	<%Alert.setAlert(""); %>
 
-<form action = "ResetPassServlet" method="post" class="container" max-width: 960px>
+<form method="post" class="container" max-width: 960px>
     <label class= "row"><span class="three columns">New password</span> <input class="nine columns"  type="password" name="newPass"></label>
     <label class= "row"><span class="three columns">Re-enter new password </span><input class="nine columns" type="password" name="reNewPass"></label>
     

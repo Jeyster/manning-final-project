@@ -35,7 +35,7 @@ public class EmailServlet extends HttpServlet {
 		
 		User superAdmin = userManagement.findSuperAdmin();
 
-		// Adresse Email d'envoie
+		// Adresse Email d'envoi
 		String to = user.getEmail();
 
 		// Adresse Email de reception

@@ -1,4 +1,4 @@
-package com.email;
+package com.sopra.email;
 
 import java.util.*;
 import javax.mail.*;
@@ -17,10 +17,10 @@ public class EmailService {
         try {
         	
         	String host="smtp.gmail.com";
-        	String user = "samanthadray@gmail.com";
-        	String password = "#il0v3COCONUTS";
-        	String to = "baboutata2009@gmail.com";
-        	String from = "samanthadray@gmail.com";
+        	String user = "";
+        	String password = "";
+        	String to = "";
+        	String from = "";
         	String subject = "this is a test";
         	String messageText = "If you want to reset your password click here";
         	
@@ -44,13 +44,9 @@ public class EmailService {
             
             Message message = new MimeMessage(mailSession);
             message.setFrom(new InternetAddress(from));
-            //String[] recipientList = to.split(",");
+        
             InternetAddress[] address = {new InternetAddress(to)};
-           // int counter = 0;
-            /*for (String recipient: recipientList) {
-                recipientAddress[counter] = new InternetAddress(recipient.trim());
-                counter++;
-            }*/
+           
             message.setRecipients(Message.RecipientType.TO, address);
             message.setSubject(subject); 
             message.setSentDate(new Date());
