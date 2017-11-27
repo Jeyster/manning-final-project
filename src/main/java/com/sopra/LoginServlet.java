@@ -9,7 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
 
 @SuppressWarnings("serial")
 @WebServlet("/login")
@@ -26,10 +26,12 @@ public class LoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		if(req.getSession().getAttribute(Constants.CONNECTED_USER_ATTRIBUTE)!=null){
+			
 			resp.sendRedirect(Constants.HOME_PAGE);
 		}
 
 		req.setAttribute(Constants.ALERT_ATTRIBUTE, Alert.getAlert());
+		
 		
 		req.getRequestDispatcher("/WEB-INF/login.jsp").forward(req, resp);
 	}
@@ -51,6 +53,7 @@ public class LoginServlet extends HttpServlet {
 		
 		if (connexionField.contains("@")){
 			 user = userManagement.findByEmail(connexionField);
+			 
 		}else{
 			 user = userManagement.findByLogin(connexionField);
 		}		
@@ -65,8 +68,15 @@ public class LoginServlet extends HttpServlet {
 		Password myPassword = new Password();
 		if (myPassword.toHex(user.getPassword())
 				.equals(myPassword.toHex(myPassword.generateStorngPasswordHash(password, user)))) {
+			
 			req.getSession().setAttribute(Constants.CONNECTED_USER_ATTRIBUTE, user);
+			
+			int count = user.getCount();
+			user.setCount(count + 1);
+			userManagement.updateUser(user);
 			resp.sendRedirect(Constants.HOME_PAGE);
+			
+			
 		} else {
 			Alert.setAlert(Constants.BAD_PASSWORD_OR_LOGIN_ALERT);
 			resp.sendRedirect(Constants.LOGIN_PAGE);

@@ -13,7 +13,7 @@
 </head>
 <body>
 
-	<%User user = (User) request.getSession().getAttribute(Constants.CONNECTED_USER_ATTRIBUTE);%>
+	<%User user = (User) request.getSession().getAttribute(Constants.CONNECTED_USER_ATTRIBUTE);;%>
 	
 <span>
 <%=user.getLogin() %> is connected.
@@ -29,6 +29,13 @@
 	<a href ="go-to-angular">List of users with NgCli</a><br>
 	<%} %>
 	<a href ="disconnect">Sign out</a><br><br>
+
+
+	
+
+Compteur : <%= user.getCount() %>
+
+	
 
 </body>
 </html>
