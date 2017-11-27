@@ -16,9 +16,8 @@ public class GoToAngularServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		User user = (User) req.getSession().getAttribute(Constants.CONNECTED_USER_ATTRIBUTE);
-		Long userRank = user.getRank();
 
-		resp.sendRedirect("http://localhost:4200");
+		resp.sendRedirect("http://localhost:4200?user="+user.getToken());
 	}
 	
 	

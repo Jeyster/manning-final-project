@@ -2,8 +2,10 @@
 package com.sopra;
 
 import java.io.IOException;
+import java.io.Serializable;
 
 import javax.ejb.EJB;
+import javax.enterprise.context.SessionScoped;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,7 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 
 @SuppressWarnings("serial")
 @WebServlet("/login")
-public class LoginServlet extends HttpServlet {
+@SessionScoped
+public class LoginServlet extends HttpServlet implements Serializable {
 		
 	@EJB
 	private UsersManagement userManagement;
