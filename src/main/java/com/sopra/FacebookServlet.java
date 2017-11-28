@@ -1,6 +1,7 @@
 package com.sopra;
 
 import java.io.IOException;
+import java.util.Date;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -28,6 +29,9 @@ public class FacebookServlet extends HttpServlet {
 	
 		 else {
 			user = userManagement.findByFbId(userFbId);
+			Date lastConnexion = new Date(req.getSession().getLastAccessedTime());
+			user.setLastConnexion(lastConnexion);
+			userManagement.updateUser(user);
 		}
 		req.getSession().setAttribute(Constants.CONNECTED_USER_ATTRIBUTE, user);
 		resp.setStatus(204);
