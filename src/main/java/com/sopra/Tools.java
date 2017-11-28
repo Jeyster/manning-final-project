@@ -24,6 +24,7 @@ public class Tools {
 	public String convertLoginWithSpaces(String login){
 		return login.replace(' ', '-');
 	}
+	
 
 	public boolean loginValidation(String sentence) {
 		

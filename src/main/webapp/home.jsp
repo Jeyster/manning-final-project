@@ -1,3 +1,4 @@
+<%@page import="java.util.Date"%>
 <%@page import="com.sopra.Tools"%>
 <%@page import="com.sopra.Constants"%>
 <%@page import="com.sopra.User"%>
@@ -13,25 +14,27 @@
 </head>
 <body>
 
-	<%User user = (User) request.getSession().getAttribute(Constants.CONNECTED_USER_ATTRIBUTE);;%>
+	<%User user = (User) request.getSession().getAttribute(Constants.CONNECTED_USER_ATTRIBUTE);
+	Date lastConnexion = new Date(request.getSession().getLastAccessedTime());%>
 	
 <span>
 <%=user.getLogin() %> is connected.
 </span>
 
 <h4>Hello world!</h4>
-	<%Tools tools = new Tools();
-	if (!tools.isAFacebookUser(user)){ %>
+	<%Tools tools = new Tools();%>
+	<%if (!tools.isAFacebookUser(user)){ %>
 	<a href="edition.html">Modify user</a><br>
-	<%}
-	if (user.getRank()>1){%>
+	<%if (user.getRank()>1){%>
 	<a href ="users">List of users</a><br>
 	<a href ="go-to-angular">List of users with NgCli</a><br>
-	<%} %>
+	<%} }%>
 	<a href ="disconnect">Sign out</a><br><br>
 
 
-	Compteur : <%= user.getCount() %>
+	Number of times you've been here: <%= user.getCount() %>
+	<br>
+	Last connexion : <%= user.getLastConnexion() %>
 
   
 

@@ -1,3 +1,4 @@
+<%@page import="com.sopra.Tools"%>
 <%@page import="com.sopra.Alert"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -10,7 +11,8 @@
 <title>User Edition</title>
 </head>
 
-<%User user = (User) request.getSession().getAttribute(Constants.CONNECTED_USER_ATTRIBUTE); %>
+<%User user = (User) request.getSession().getAttribute(Constants.CONNECTED_USER_ATTRIBUTE); 
+Tools tools = new Tools();%>
 <h1>Modify <%=user.getLogin() %> </h1>
 
 <div><div class="alert">${alert}</div>	</div>
@@ -23,6 +25,7 @@
 	<button>Edit login</button>
 </form>
 
+<%if (!tools.isAFacebookUser(user)){ %>
 <h3>Edit email</h3>
 <form method='post' class="container" max-width: 960px>
 	<label class= "row"><span class="three columns"> New email: </span><input class="nine columns" type="email" name = "email"></label>
@@ -37,6 +40,8 @@
 	<label class= "row"><span class="three columns"> Confirm new password: </span><input class="nine columns" type="password" name = "password-confirmation"></label>
 	
 	<button>Edit password</button>
+</form>
+<%} %>
 	
 	<br>
 	<br>
@@ -46,7 +51,7 @@
 	
 <link rel="stylesheet" href="Skeleton-2.0.4/css/normalize.css">
 <link rel="stylesheet" href="Skeleton-2.0.4/css/skeleton.css">
-</form>
+
 
 
 
