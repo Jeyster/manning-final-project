@@ -31,6 +31,8 @@ public class FacebookServlet extends HttpServlet {
 			user = userManagement.findByFbId(userFbId);
 			Date lastConnexion = new Date(req.getSession().getLastAccessedTime());
 			user.setLastConnexion(lastConnexion);
+			int count = user.getCount();
+			user.setCount(count + 1);
 			userManagement.updateUser(user);
 		}
 		req.getSession().setAttribute(Constants.CONNECTED_USER_ATTRIBUTE, user);
