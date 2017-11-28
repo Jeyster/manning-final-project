@@ -47,10 +47,8 @@ public class UsersManagement {
 
 		try {
 			User user = (User) query.getSingleResult();
-			System.out.println("!!! TRY !!!");
 			return user;
 		} catch (Exception e) {
-			System.out.println("!!! CATCH !!!");
 			e.printStackTrace();
 			return null;
 		}
