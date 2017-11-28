@@ -24,7 +24,9 @@ public class FacebookServlet extends HttpServlet {
 		User user;
 		if (userManagement.findByFbId(userFbId)==null){
 			user = userManagement.addFbUser(userName, userFbId, userEmail);
-		} else {
+		}
+	
+		 else {
 			user = userManagement.findByFbId(userFbId);
 		}
 		req.getSession().setAttribute(Constants.CONNECTED_USER_ATTRIBUTE, user);

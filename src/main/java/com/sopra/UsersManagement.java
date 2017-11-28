@@ -80,7 +80,18 @@ public class UsersManagement {
 	public User addFbUser(String login, String id, String email) {
 		User user = new User();
 		Tools tools = new Tools();
-		user.setLogin(tools.convertLoginWithSpaces(login));
+		
+		//Change le login si deja présent dans la bdd
+		String convertedLogin = tools.convertLoginWithSpaces(login);
+		String temp=convertedLogin;
+		int i=1;
+		while (findByLogin(temp)!=null){
+			temp = convertedLogin+i;
+			i++;
+		}
+		user.setLogin(temp);
+		
+		
 		user.setEmail(email);
 		user.setFacebookId(id);
 		user.setCount(1);

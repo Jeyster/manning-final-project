@@ -20,11 +20,9 @@
 </span>
 
 <h4>Hello world!</h4>
-	<%Tools tools = new Tools();
-	if (!tools.isAFacebookUser(user)){ %>
+	<%Tools tools = new Tools();%>
 	<a href="edition.html">Modify user</a><br>
-	<%}
-	if (user.getRank()>1){%>
+	<%if (user.getRank()>1){%>
 	<a href ="users">List of users</a><br>
 	<a href ="go-to-angular">List of users with NgCli</a><br>
 	<%} %>
