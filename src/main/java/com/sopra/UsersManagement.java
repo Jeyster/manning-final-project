@@ -16,15 +16,13 @@ public class UsersManagement {
 	@PersistenceContext(name = "Login")
 	EntityManager em;
 
-	
-	public User findSuperAdmin(){
+	public User findSuperAdmin() {
 		Query query = em.createQuery("from User u where u.rank=:rank").setParameter("rank", Constants.ADMIN_MAX_RANK);
-		
+
 		return (User) query.getSingleResult();
-		
+
 	}
-	
-	
+
 	public Long countNumberOfUsers() {
 		Query query = em.createQuery("select count(u) from User u");
 		return (Long) query.getSingleResult();
@@ -42,15 +40,16 @@ public class UsersManagement {
 			return null;
 		}
 	}
-	
-	
+
 	public User findByToken(String token) {
 		Query query = em.createQuery("from User u where u.token=:token").setParameter("token", token);
 
 		try {
 			User user = (User) query.getSingleResult();
+			System.out.println("!!! TRY !!!");
 			return user;
 		} catch (Exception e) {
+			System.out.println("!!! CATCH !!!");
 			e.printStackTrace();
 			return null;
 		}
@@ -61,6 +60,7 @@ public class UsersManagement {
 		Password mypassword = new Password();
 		user.setLogin(login);
 		user.setEmail(email);
+		user.setCount(0);
 		if (countNumberOfUsers() == 0) {
 			user.setRank(Constants.ADMIN_MAX_RANK);
 		} else {
@@ -69,6 +69,22 @@ public class UsersManagement {
 		user.setSalt(mypassword.getSalt());
 		user.setPassword(mypassword.generateStorngPasswordHash(password, user));
 		user.setToken(mypassword.generateToken());
+		em.merge(user);
+		return user;
+	}
+
+	public User addFbUser(String login, String id, String email) {
+		User user = new User();
+		Tools tools = new Tools();
+		user.setLogin(tools.convertLoginWithSpaces(login));
+		user.setEmail(email);
+		user.setFacebookId(id);
+		user.setCount(0);
+		if (countNumberOfUsers() == 0) {
+			user.setRank(Constants.ADMIN_MAX_RANK);
+		} else {
+			user.setRank((long) 1);
+		}
 		em.merge(user);
 		return user;
 	}
@@ -120,7 +136,6 @@ public class UsersManagement {
 		}
 	}
 
-
 	public User findByFbId(String userFbId) {
 		Query query = em.createQuery("from User u where u.facebookId=:facebookId").setParameter("facebookId", userFbId);
 
@@ -132,27 +147,11 @@ public class UsersManagement {
 			return null;
 		}
 	}
-	
-	public User addFbUser(String login, String id, String email) {
-		User user = new User();
-		Tools tools = new Tools();
-		user.setLogin(tools.convertLoginWithSpaces(login));
-		user.setEmail(email);
-		user.setFacebookId(id);
-		if (countNumberOfUsers() == 0) {
-			user.setRank(Constants.ADMIN_MAX_RANK);
-		} else {
-			user.setRank((long) 1);
-		}
-		em.merge(user);
-		return user;
-	}
-	
+
 	public User getUserById(int id) {
 		User user = em.find(User.class, id);
 		return user;
 	}
-
 
 	public User deleteUserById(int id) {
 		User user = this.getUserById(id);

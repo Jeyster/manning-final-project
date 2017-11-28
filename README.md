@@ -38,6 +38,8 @@ using wildfly10x, create a mySQL datasource with the next properties:
 
 * For the moment, the information required is only visible in the browser console: check it with F12
 
+* Facebook users cannot modify/edit the profil and change/reset password.  
+
 
 ## For Angular :
 

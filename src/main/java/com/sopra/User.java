@@ -26,13 +26,25 @@ public class User {
 
 	private String token;
 	
+	private Integer count;
+	
 	@Column(unique = true)
 	private String facebookId;
 
 	// GETTERS AND SETTERS
+	
+	
 
 	public String getFacebookId() {
 		return facebookId;
+	}
+
+	public Integer getCount() {
+		return count;
+	}
+
+	public void setCount(Integer count) {
+		this.count = count;
 	}
 
 	public void setFacebookId(String facebookId) {
