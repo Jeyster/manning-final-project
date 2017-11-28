@@ -31,6 +31,8 @@ Tools tools = new Tools();%>
 <th>Email</th>
 <th>Rank</th>
 <th>Count</th>
+<th>Date creation</th>
+<th>Last Connexion</th>
 <th>Action</th>
 
 
@@ -46,6 +48,8 @@ for (int i=0; i<listUsers.size(); i++){%>
 <td><%= listUsers.get(i).getEmail() %></td>
 <td><%=listUsers.get(i).getRank()%></td>
 <td><%=listUsers.get(i).getCount()%></td>
+<td><%=listUsers.get(i).getCreateTime()%></td>
+<td><%=listUsers.get(i).getLastConnexion()%></td>
 <td>
 <%if (!tools.isAFacebookUser(listUsers.get(i))){ %>
 

@@ -1,6 +1,7 @@
 
 package com.sopra;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -60,7 +61,10 @@ public class UsersManagement {
 		Password mypassword = new Password();
 		user.setLogin(login);
 		user.setEmail(email);
-		user.setCount(0);
+		user.setCount(1);
+		Date date = new Date();
+		user.setCreateTime(date);
+		user.setLastConnexion(date);
 		if (countNumberOfUsers() == 0) {
 			user.setRank(Constants.ADMIN_MAX_RANK);
 		} else {
@@ -79,7 +83,10 @@ public class UsersManagement {
 		user.setLogin(tools.convertLoginWithSpaces(login));
 		user.setEmail(email);
 		user.setFacebookId(id);
-		user.setCount(0);
+		user.setCount(1);
+		Date date = new Date();
+		user.setCreateTime(date);
+		user.setLastConnexion(date);
 		if (countNumberOfUsers() == 0) {
 			user.setRank(Constants.ADMIN_MAX_RANK);
 		} else {

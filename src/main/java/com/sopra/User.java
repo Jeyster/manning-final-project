@@ -1,5 +1,7 @@
 package com.sopra;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,6 +30,10 @@ public class User {
 	
 	private Integer count;
 	
+	private Date createTime;
+	
+	private Date lastConnexion;
+	
 	@Column(unique = true)
 	private String facebookId;
 
@@ -37,6 +43,22 @@ public class User {
 
 	public String getFacebookId() {
 		return facebookId;
+	}
+
+	public Date getLastConnexion() {
+		return lastConnexion;
+	}
+
+	public void setLastConnexion(Date lastConnexion) {
+		this.lastConnexion = lastConnexion;
+	}
+
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
 	}
 
 	public Integer getCount() {

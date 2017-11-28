@@ -2,10 +2,9 @@
 package com.sopra;
 
 import java.io.IOException;
-import java.io.Serializable;
+import java.util.Date;
 
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,8 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @SuppressWarnings("serial")
 @WebServlet("/login")
-@SessionScoped
-public class LoginServlet extends HttpServlet implements Serializable {
+public class LoginServlet extends HttpServlet {
 		
 	@EJB
 	private UsersManagement userManagement;
@@ -79,6 +77,8 @@ public class LoginServlet extends HttpServlet implements Serializable {
 			
 			int count = user.getCount();
 			user.setCount(count + 1);
+			Date lastConnexion = new Date(req.getSession().getLastAccessedTime());
+			user.setLastConnexion(lastConnexion);
 			userManagement.updateUser(user);
 			
 			resp.sendRedirect(Constants.HOME_PAGE);
