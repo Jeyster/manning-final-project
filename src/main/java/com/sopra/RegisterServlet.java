@@ -1,6 +1,8 @@
 package com.sopra;
 
 import java.io.IOException;
+import java.util.Date;
+
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -83,6 +85,7 @@ public class RegisterServlet extends HttpServlet {
 			User user = userManagement.addUser(login, password, email);
 			req.getSession().setAttribute(Constants.CONNECTED_USER_ATTRIBUTE, user);
 			resp.sendRedirect(Constants.HOME_PAGE);
+			
 		}
 
 	}
