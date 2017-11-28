@@ -10,6 +10,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="Skeleton-2.0.4/css/listUsers.css">
+<link rel="stylesheet" href="Skeleton-2.0.4/css/normalize.css">
+<link rel="stylesheet" href="Skeleton-2.0.4/css/skeleton.css">
 <title>List of Users</title>
 </head>
 <body>
