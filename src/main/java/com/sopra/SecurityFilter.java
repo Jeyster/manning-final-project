@@ -27,6 +27,7 @@ public class SecurityFilter implements Filter {
                     || request.getRequestURI().endsWith("/login")
                     || request.getRequestURI().endsWith("/register")
                     || request.getRequestURI().endsWith("/forgotPass")
+                    || request.getRequestURI().endsWith("/changePassword")
                     || request.getRequestURI().endsWith("/facebook")
                     || request.getRequestURI().endsWith("/facebookConnection.html")
                     || request.getRequestURI().contains("/api/users")

@@ -39,26 +39,23 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
 		String email= req.getParameter("email");
 		
 		
-		if (email.equals(null)||email==""){
-			req.setAttribute("msg", "All Fields are mendatory" );
-			getServletContext().getRequestDispatcher("/forgotPass").forward(req, resp);
+		if (email.isEmpty()){
+			Alert.setAlert(Constants.EMPTY_EMAIL_ALERT);
+			resp.sendRedirect(Constants.FORGOT_PASS);
 		}
 		
 		else if (userManagement.findByEmail(email)==null){
-			req.setAttribute("msg", "email isn't register in database" );
-			getServletContext().getRequestDispatcher("/forgotPass").forward(req, resp);
+			Alert.setAlert(Constants.EMAIL_IS_NOT_VALID);
+			resp.sendRedirect(Constants.FORGOT_PASS);
 		}
 		else{
 			user = userManagement.findByEmail(email);
-			}
-			
+		
    try {
    	
-   	String host="smtp.laposte.net";
-   	String password = "Dada4848";
-   	String userName = "achemenides486@laposte.net";
+   	String host="localhost";
    	String to = user.getEmail();
-   	String from = "achemenides486@laposte.net";
+   	String from = "samanthadray@koala.fr";
    	String subject = "Password Modification";
    	String messageText = "Hello " + user.getLogin() + "copy the link below to change your password. "
 				+ "If you have an other problem, contact the administrator.   " + "\n\n"
@@ -69,19 +66,14 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
        // Use javamail api, set parameters from registration.properties file
        // set the session properties
        Properties props = System.getProperties();
-       props.put("mail.smtp.starttls.enable", "true");
-       props.put("mail.smtp.host", "smtp.laposte.net");
-       props.put("mail.smtp.port", "25");
-       props.put("mail.smtp.auth", "true");
-       props.put("mail.smtp.starttls.required", "true");
-       Session session = Session.getDefaultInstance(props, null);
-
+       props.setProperty("mail.smtp.host", host);
+       
        // Create email message
        //java.security.Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
        Session mailSession = Session.getDefaultInstance(props, null);
        mailSession.setDebug(sessionDebug);
        
-       Message message = new MimeMessage(mailSession);
+       MimeMessage message = new MimeMessage(mailSession);
        message.setFrom(new InternetAddress(from));
    
        InternetAddress[] address = {new InternetAddress(to)};
@@ -89,21 +81,22 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
        message.setRecipients(Message.RecipientType.TO, address);
        message.setSubject(subject); 
        message.setSentDate(new Date());
-       message.setContent(messageText, "text/html");
        
        // Send smtp message
-       Transport tr = mailSession.getTransport("smtp");
-       tr.connect(host, password);
-       message.saveChanges();
-       tr.sendMessage(message, message.getAllRecipients());
-       tr.close();
-       System.out.println("Mail sent successfully.");
+       
+       
        message.setText("Hello " + user.getLogin() + "copy the link below to change your password. "
 				+ "If you have an other problem, contact the administrator.   " + "\n\n"
 				+ "http://localhost:8080/projet-final-1.0-SNAPSHOT/changePassword?token="+user.getToken());
+       
+       Transport tr = mailSession.getTransport("smtp");
+       message.saveChanges();
+       tr.send(message);
+       tr.close();
+       System.out.println("Mail sent successfully.");
        resp.sendRedirect("http://localhost:8080/projet-final-1.0-SNAPSHOT/login");
 
    }catch (MessagingException e) {
       System.out.println("Error in method sendEmailNotification: " + e);
    }}}
-
+}
